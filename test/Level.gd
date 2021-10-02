@@ -28,7 +28,7 @@ func _physics_process(delta: float) -> void:
 	if not camera.dragging:
 		var from = camera.project_ray_origin(m_position)
 		ray_ground.global_transform.origin = from
-		ray_ground.cast_to = from + camera.project_ray_normal(m_position) * 100
+		ray_ground.cast_to = from + camera.project_ray_normal(m_position) * 1000
 		if ray_ground.is_colliding():
 			_target = ray_ground.get_collision_point()
 			$Debug/Target.global_transform.origin = _target
@@ -60,3 +60,8 @@ func _wakeup_blocks() -> void:
 	for block in $Construction.get_children():
 		if block is BuildingBlock:
 			block.sleeping = false
+
+
+func _on_Area_body_entered(body: Node) -> void:
+	if body is BuildingBlock:
+		body.queue_free()

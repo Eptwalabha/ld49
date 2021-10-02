@@ -8,3 +8,4 @@ builds/
 
 *.translation
 *.png~
+blender/*.blend[0-9]
