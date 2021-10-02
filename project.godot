@@ -10,12 +10,12 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Spatial",
-"class": "CameraOrbital",
+"class": "OrbitalCamera",
 "language": "GDScript",
-"path": "res://test/CameraOrbital.gd"
+"path": "res://test/OrbitalCamera.gd"
 } ]
 _global_script_class_icons={
-"CameraOrbital": ""
+"OrbitalCamera": ""
 }
 
 [application]

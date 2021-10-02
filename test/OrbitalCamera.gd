@@ -1,4 +1,4 @@
-class_name CameraOrbital
+class_name OrbitalCamera
 extends Spatial
 
 onready var camera : Camera = $Camera

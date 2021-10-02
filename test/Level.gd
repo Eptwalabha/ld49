@@ -4,7 +4,7 @@ onready var Level = preload("res://test/Block.tscn")
 onready var r0 : RayCast = $R0
 onready var ray : RayCast = $RayCast
 onready var pointer : MeshInstance = $Pointer
-#onready var camera : Camera = $CameraPivot/Camera
+onready var camera : OrbitalCamera = $OrbitalCamera
 var m_position : Vector2 = Vector2.ZERO
 
 func _ready() -> void:
@@ -18,7 +18,9 @@ func _input(event: InputEvent) -> void:
 		add_child(block)
 		block.global_transform.origin = pointer.global_transform.origin + Vector3(0, 3, 0)
 
-#func _physics_process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	if not camera.dragging:
+		update_target_position()
 #	var from = camera.project_ray_origin(m_position)
 #	var to = from + camera.project_ray_normal(m_position) * 100
 #	r0.global_transform.origin = from
@@ -28,3 +30,5 @@ func _input(event: InputEvent) -> void:
 #		if ray.is_colliding():
 #			pointer.global_transform.origin = ray.get_collision_point()
 
+func update_target_position() -> void:
+	pass

@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://test/Level.gd" type="Script" id=2]
-[ext_resource path="res://test/CameraOrbital.tscn" type="PackedScene" id=3]
+[ext_resource path="res://test/OrbitalCamera.tscn" type="PackedScene" id=3]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 5, 0.25, 5 )
@@ -24,7 +24,7 @@ extents = Vector3( 5, 1, 5 )
 [node name="Level" type="Spatial"]
 script = ExtResource( 2 )
 
-[node name="CameraOrbital" parent="." instance=ExtResource( 3 )]
+[node name="OrbitalCamera" parent="." instance=ExtResource( 3 )]
 
 [node name="Floor" type="Spatial" parent="."]
 
