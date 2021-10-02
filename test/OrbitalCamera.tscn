@@ -5,6 +5,8 @@
 [node name="OrbitalCamera" type="Spatial"]
 script = ExtResource( 1 )
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.29746, 9.94297, 8 )
+[node name="Pitch" type="Spatial" parent="."]
+
+[node name="Camera" type="Camera" parent="Pitch"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 10, 0 )
 fov = 50.0

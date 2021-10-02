@@ -42,7 +42,7 @@ func _physics_process(delta: float) -> void:
 	if wakeup_blocks:
 		_wakeup_blocks()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	crane.point_at(ray.global_transform.origin)
 
 func _on_OrbitalCamera_orbiting_end(mouse_position: Vector2) -> void:
