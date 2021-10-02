@@ -19,7 +19,7 @@ material = SubResource( 2 )
 size = Vector3( 4.2, 2.2, 2.2 )
 
 [node name="LineBlock" instance=ExtResource( 1 )]
-mass = 2000.0
+mass = 200.0
 
 [node name="CollisionShape" parent="." index="0"]
 shape = SubResource( 1 )

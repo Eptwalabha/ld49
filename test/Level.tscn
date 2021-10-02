@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://test/Crane.tscn" type="PackedScene" id=1]
+[ext_resource path="res://test/crane/Crane.tscn" type="PackedScene" id=1]
 [ext_resource path="res://test/Level.gd" type="Script" id=2]
-[ext_resource path="res://test/OrbitalCamera.tscn" type="PackedScene" id=3]
+[ext_resource path="res://test/camera/OrbitalCamera.tscn" type="PackedScene" id=3]
 
 [sub_resource type="PhysicsMaterial" id=1]
 rough = true
@@ -32,6 +32,7 @@ extents = Vector3( 100, 10, 100 )
 script = ExtResource( 2 )
 
 [node name="OrbitalCamera" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.73354, 0 )
 
 [node name="Ground" type="Spatial" parent="."]
 
@@ -51,7 +52,7 @@ material/0 = null
 [node name="RayCast" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.16191, 5.1161, 0 )
 enabled = true
-cast_to = Vector3( 0, -10, 0 )
+cast_to = Vector3( 0, -100, 0 )
 collision_mask = 7
 
 [node name="RayGround" type="RayCast" parent="."]
@@ -75,12 +76,12 @@ material/0 = SubResource( 6 )
 [node name="Construction" type="Spatial" parent="."]
 
 [node name="Crane" parent="." instance=ExtResource( 1 )]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 14, 0, 14 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 14 )
 
-[node name="Area" type="Area" parent="."]
+[node name="Destroyer" type="Area" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.05006, 0 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Area"]
+[node name="CollisionShape" type="CollisionShape" parent="Destroyer"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -25, 0 )
 shape = SubResource( 7 )
 
@@ -88,6 +89,8 @@ shape = SubResource( 7 )
 margin_right = 283.0
 margin_bottom = 98.0
 
-[connection signal="orbiting_end" from="OrbitalCamera" to="." method="_on_OrbitalCamera_orbiting_end"]
-[connection signal="orbiting_start" from="OrbitalCamera" to="." method="_on_OrbitalCamera_orbiting_start"]
-[connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="Destroyer" to="." method="_on_Area_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

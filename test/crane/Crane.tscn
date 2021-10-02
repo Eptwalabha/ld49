@@ -1,0 +1,95 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://material/CraneRedMetal.tres" type="Material" id=1]
+[ext_resource path="res://test/crane/Crane.gd" type="Script" id=2]
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 5, 4, 3 )
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 50, 1, 1 )
+
+[sub_resource type="CubeMesh" id=3]
+size = Vector3( 3, 4, 2 )
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0.384314, 0.384314, 0.384314, 1 )
+
+[sub_resource type="CubeMesh" id=5]
+size = Vector3( 4, 1.5, 1.5 )
+
+[sub_resource type="SpatialMaterial" id=7]
+albedo_color = Color( 0.12549, 0.12549, 0.12549, 1 )
+
+[sub_resource type="CylinderMesh" id=8]
+material = SubResource( 7 )
+top_radius = 0.1
+bottom_radius = 0.1
+height = 3.0
+radial_segments = 4
+rings = 1
+
+[sub_resource type="CylinderMesh" id=9]
+top_radius = 0.2
+bottom_radius = 0.2
+height = 0.2
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id=6]
+top_radius = 0.5
+height = 25.0
+radial_segments = 4
+
+[node name="Crane" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="Pivot" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0 )
+
+[node name="Cabin" type="MeshInstance" parent="Pivot"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1.3, -3 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="Arm" type="MeshInstance" parent="Pivot"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -18 )
+mesh = SubResource( 2 )
+material/0 = ExtResource( 1 )
+
+[node name="CounterWeight" type="MeshInstance" parent="Pivot/Arm"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, -1.3, 0 )
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+
+[node name="Chariot" type="Spatial" parent="Pivot"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -18.7154 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Pivot/Chariot"]
+mesh = SubResource( 5 )
+material/0 = null
+
+[node name="Rope" type="Spatial" parent="Pivot/Chariot"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.770031, 0 )
+
+[node name="Rope" type="MeshInstance" parent="Pivot/Chariot/Rope"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4522, 0 )
+mesh = SubResource( 8 )
+material/0 = null
+
+[node name="Hook" type="Spatial" parent="Pivot/Chariot/Rope"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.86094, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Pivot/Chariot/Rope/Hook"]
+transform = Transform( 1, -4.37114e-08, 4.37114e-08, 4.37114e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, 0, 0, 0 )
+mesh = SubResource( 9 )
+material/0 = null
+
+[node name="RemoteTransform" type="RemoteTransform" parent="Pivot/Chariot/Rope/Hook"]
+update_rotation = false
+update_scale = false
+
+[node name="Mast" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.5, 0 )
+mesh = SubResource( 6 )
+material/0 = ExtResource( 1 )

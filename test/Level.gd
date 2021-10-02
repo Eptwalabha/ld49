@@ -14,16 +14,25 @@ var wakeup_blocks : bool = false
 
 func _ready() -> void:
 	$Label.text = current_block
+	var test = GameData.BUILDING_BLOCKS["line"].instance()
+	add_child(test)
+	crane.attach(test)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		m_position = event.position
 	if event.is_action_pressed("drop-block"):
-		var block = GameData.BUILDING_BLOCKS[current_block].instance()
-		$Construction.add_child(block)
-		block.connect("block_deleted", self, "_on_Block_deleted")
-		block.global_transform.origin = pointer.global_transform.origin + Vector3(0, 3, 0)
-	
+		if crane.hold_something():
+			var block : BuildingBlock = crane.detach()
+			var velocity = crane.chariot_velocity
+			block.gravity_scale = 1
+			block.sleeping = false
+			block.apply_central_impulse(velocity * block.mass)
+			block.get_parent().remove_child(block)
+			$Construction.add_child(block)
+			block.connect("block_deleted", self, "_on_Block_deleted")
+			$Timer.start()
+
 	if event.is_action_pressed("next-block"):
 		update_current_block(1)
 
@@ -47,11 +56,11 @@ func _physics_process(delta: float) -> void:
 			$Debug/Target.global_transform.origin = _target
 
 	var p0 = ray.global_transform.origin
-	var p = lerp(Vector3(p0.x, 8, p0.z), Vector3(_target.x, 8, _target.z), delta * CRANE_SPEED)
+	var p = lerp(Vector3(p0.x, 80, p0.z), Vector3(_target.x, 80, _target.z), delta * CRANE_SPEED)
 	ray.global_transform.origin = p
 	if ray.is_colliding():
 		pointer.global_transform.origin = ray.get_collision_point()
-	
+
 	if wakeup_blocks:
 		_wakeup_blocks()
 
@@ -78,3 +87,9 @@ func _wakeup_blocks() -> void:
 func _on_Area_body_entered(body: Node) -> void:
 	if body is BuildingBlock:
 		body.queue_free()
+
+
+func _on_Timer_timeout() -> void:
+	var next = GameData.BUILDING_BLOCKS[current_block].instance()
+	add_child(next)
+	crane.attach(next)
