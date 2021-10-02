@@ -39,9 +39,9 @@ camera-drag={
 
 [layer_names]
 
-3d_render/layer_1="all"
-3d_render/layer_2="floor"
-3d_render/layer_3="block"
+3d_physics/layer_1="all"
+3d_physics/layer_2="ground"
+3d_physics/layer_3="block"
 
 [physics]
 

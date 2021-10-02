@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://test/Level.gd" type="Script" id=2]
 [ext_resource path="res://test/OrbitalCamera.tscn" type="PackedScene" id=3]
@@ -9,32 +9,35 @@ extents = Vector3( 5, 0.25, 5 )
 [sub_resource type="CubeMesh" id=2]
 size = Vector3( 10, 0.5, 10 )
 
-[sub_resource type="SphereMesh" id=3]
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 5, 1, 5 )
+
+[sub_resource type="SphereMesh" id=4]
 radius = 0.1
 height = 0.2
 radial_segments = 16
 rings = 8
 
-[sub_resource type="SpatialMaterial" id=4]
+[sub_resource type="SpatialMaterial" id=5]
 albedo_color = Color( 0, 0.0156863, 0.796078, 1 )
 
-[sub_resource type="BoxShape" id=5]
-extents = Vector3( 5, 1, 5 )
+[sub_resource type="SpatialMaterial" id=6]
+albedo_color = Color( 0.756863, 0.427451, 0, 1 )
 
 [node name="Level" type="Spatial"]
 script = ExtResource( 2 )
 
 [node name="OrbitalCamera" parent="." instance=ExtResource( 3 )]
 
-[node name="Floor" type="Spatial" parent="."]
+[node name="Ground" type="Spatial" parent="."]
 
-[node name="StaticBody" type="StaticBody" parent="Floor"]
+[node name="StaticBody" type="StaticBody" parent="Ground"]
 collision_layer = 3
 
-[node name="CollisionShape" type="CollisionShape" parent="Floor/StaticBody"]
+[node name="CollisionShape" type="CollisionShape" parent="Ground/StaticBody"]
 shape = SubResource( 1 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Floor/StaticBody"]
+[node name="MeshInstance" type="MeshInstance" parent="Ground/StaticBody"]
 mesh = SubResource( 2 )
 material/0 = null
 
@@ -42,20 +45,39 @@ material/0 = null
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.16191, 5.1161, 0 )
 enabled = true
 cast_to = Vector3( 0, -10, 0 )
-collision_mask = 3
+collision_mask = 7
 
-[node name="R0" type="RayCast" parent="."]
+[node name="RayGround" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.16191, 5.1161, 0 )
 enabled = true
 cast_to = Vector3( 0, -10, 0 )
-
-[node name="Pointer" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.63408, 0.900725, 0 )
-mesh = SubResource( 3 )
-material/0 = SubResource( 4 )
+collision_mask = 2
 
 [node name="Area" type="Area" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.62353, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
-shape = SubResource( 5 )
+shape = SubResource( 3 )
+
+[node name="Debug" type="Spatial" parent="."]
+
+[node name="Pointer" type="MeshInstance" parent="Debug"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.63408, 0.900725, 0 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
+
+[node name="Target" type="MeshInstance" parent="Debug"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.63408, 0.900725, 0 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 6 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 4.0
+margin_bottom = 4.0
+color = Color( 0.113725, 0.00784314, 0.00784314, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="orbiting_end" from="OrbitalCamera" to="." method="_on_OrbitalCamera_orbiting_end"]
+[connection signal="orbiting_start" from="OrbitalCamera" to="." method="_on_OrbitalCamera_orbiting_start"]
