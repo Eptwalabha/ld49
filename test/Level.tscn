@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://test/Level.gd" type="Script" id=2]
+[ext_resource path="res://test/CameraOrbital.tscn" type="PackedScene" id=3]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 5, 0.25, 5 )
@@ -23,12 +24,7 @@ extents = Vector3( 5, 1, 5 )
 [node name="Level" type="Spatial"]
 script = ExtResource( 2 )
 
-[node name="CameraPivot" type="Spatial" parent="."]
-
-[node name="Camera" type="Camera" parent="CameraPivot"]
-transform = Transform( 0.75416, -0.326835, 0.569581, 0, 0.86735, 0.497699, -0.656691, -0.375345, 0.65412, 7.35399, 9.19595, 7.06428 )
-fov = 30.0
-size = 14.8291
+[node name="CameraOrbital" parent="." instance=ExtResource( 3 )]
 
 [node name="Floor" type="Spatial" parent="."]
 

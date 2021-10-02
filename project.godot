@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Spatial",
+"class": "CameraOrbital",
+"language": "GDScript",
+"path": "res://test/CameraOrbital.gd"
+} ]
+_global_script_class_icons={
+"CameraOrbital": ""
+}
+
 [application]
 
 config/name="Ld 49 - unstable"
