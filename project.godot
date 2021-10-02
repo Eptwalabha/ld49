@@ -9,10 +9,10 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "RigidBody",
+"base": "Reference",
 "class": "BuildingBlock",
 "language": "GDScript",
-"path": "res://test/Block.gd"
+"path": "res://test/block/BuildingBlock.gd"
 }, {
 "base": "Spatial",
 "class": "Crane",
@@ -36,6 +36,10 @@ config/name="Ld 49 - unstable"
 run/main_scene="res://test/Level.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+GameData="*res://test/autoload.gd"
+
 [input]
 
 drop-block={
@@ -51,6 +55,16 @@ camera-drag={
 delete-block={
 "deadzone": 0.5,
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+next-block={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":5,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+previous-block={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":4,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
 

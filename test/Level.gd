@@ -1,6 +1,7 @@
 extends Spatial
 
-onready var Level = preload("res://test/Block.tscn")
+var current_block = "line"
+
 onready var ray_ground : RayCast = $RayGround
 onready var ray : RayCast = $RayCast
 onready var pointer : MeshInstance = $Debug/Pointer
@@ -12,16 +13,28 @@ const CRANE_SPEED : float = 4.0
 var wakeup_blocks : bool = false
 
 func _ready() -> void:
-	pass
+	$Label.text = current_block
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		m_position = event.position
 	if event.is_action_pressed("drop-block"):
-		var block = Level.instance()
+		var block = GameData.BUILDING_BLOCKS[current_block].instance()
 		$Construction.add_child(block)
 		block.connect("block_deleted", self, "_on_Block_deleted")
 		block.global_transform.origin = pointer.global_transform.origin + Vector3(0, 3, 0)
+	
+	if event.is_action_pressed("next-block"):
+		update_current_block(1)
+
+	if event.is_action_pressed("previous-block"):
+		update_current_block(-1)
+
+func update_current_block(step: int) -> void:
+	var i = GameData.available_blocks.find(current_block)
+	i = (i + step) % len(GameData.available_blocks)
+	current_block = GameData.available_blocks[i]
+	$Label.text = current_block
 
 
 func _physics_process(delta: float) -> void:
