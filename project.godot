@@ -15,12 +15,18 @@ _global_script_classes=[ {
 "path": "res://test/Block.gd"
 }, {
 "base": "Spatial",
+"class": "Crane",
+"language": "GDScript",
+"path": "res://test/Crane.gd"
+}, {
+"base": "Spatial",
 "class": "OrbitalCamera",
 "language": "GDScript",
 "path": "res://test/OrbitalCamera.gd"
 } ]
 _global_script_class_icons={
 "BuildingBlock": "",
+"Crane": "",
 "OrbitalCamera": ""
 }
 

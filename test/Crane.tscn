@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://material/CraneRedMetal.tres" type="Material" id=1]
+[ext_resource path="res://test/Crane.gd" type="Script" id=2]
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 0.5, 0.4, 0.3 )
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 10, 0.1, 0.1 )
+
+[sub_resource type="CubeMesh" id=3]
+size = Vector3( 0.3, 0.4, 0.2 )
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0.384314, 0.384314, 0.384314, 1 )
+
+[sub_resource type="CubeMesh" id=6]
+size = Vector3( 0.4, 0.15, 0.15 )
+
+[sub_resource type="CylinderMesh" id=5]
+top_radius = 0.1
+bottom_radius = 0.2
+height = 4.0
+radial_segments = 4
+
+[node name="Crane" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="Pivot" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0 )
+
+[node name="Cabin" type="MeshInstance" parent="Pivot"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.0355351, -4.76837e-07, 0 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="Arm" type="MeshInstance" parent="Pivot/Cabin"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 0 )
+mesh = SubResource( 2 )
+material/0 = ExtResource( 1 )
+
+[node name="CounterWeight" type="MeshInstance" parent="Pivot/Cabin/Arm"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5301, -0.0926471, 0 )
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+
+[node name="Chariot" type="Spatial" parent="Pivot/Cabin/Arm"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Pivot/Cabin/Arm/Chariot"]
+mesh = SubResource( 6 )
+material/0 = null
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+mesh = SubResource( 5 )
+material/0 = ExtResource( 1 )

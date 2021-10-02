@@ -5,6 +5,7 @@ onready var ray_ground : RayCast = $RayGround
 onready var ray : RayCast = $RayCast
 onready var pointer : MeshInstance = $Debug/Pointer
 onready var camera : OrbitalCamera = $OrbitalCamera
+onready var crane : Crane = $Crane
 var m_position : Vector2 = Vector2.ZERO
 var _target : Vector3 = Vector3.ZERO
 const CRANE_SPEED : float = 4.0
@@ -25,7 +26,6 @@ func _input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 	if not camera.dragging:
-		update_target_position()
 		var from = camera.project_ray_origin(m_position)
 		ray_ground.global_transform.origin = from
 		ray_ground.cast_to = from + camera.project_ray_normal(m_position) * 100
@@ -42,9 +42,8 @@ func _physics_process(delta: float) -> void:
 	if wakeup_blocks:
 		_wakeup_blocks()
 
-func update_target_position() -> void:
-	pass
-
+func _process(delta: float) -> void:
+	crane.point_at(ray.global_transform.origin)
 
 func _on_OrbitalCamera_orbiting_end(mouse_position: Vector2) -> void:
 	var _end_drag : Vector2 = camera.unproject_position(_target)
