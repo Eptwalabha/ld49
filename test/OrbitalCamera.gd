@@ -31,3 +31,9 @@ func _input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
 	if dragging:
 		global_transform.basis = _initial_basis.rotated(Vector3.UP, _target_angle)
+
+func project_ray_origin(position: Vector2) -> Vector3:
+	return camera.project_ray_origin(position)
+
+func project_ray_normal(position: Vector2) -> Vector3:
+	return camera.project_ray_normal(position)

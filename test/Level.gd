@@ -21,14 +21,13 @@ func _input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	if not camera.dragging:
 		update_target_position()
-#	var from = camera.project_ray_origin(m_position)
-#	var to = from + camera.project_ray_normal(m_position) * 100
-#	r0.global_transform.origin = from
-#	r0.cast_to = to
-#	if r0.is_colliding():
-#		ray.global_transform.origin = r0.get_collision_point() + Vector3(0, 8, 0)
-#		if ray.is_colliding():
-#			pointer.global_transform.origin = ray.get_collision_point()
+		var from = camera.project_ray_origin(m_position)
+		r0.global_transform.origin = from
+		r0.cast_to = from + camera.project_ray_normal(m_position) * 100
+		if r0.is_colliding():
+			ray.global_transform.origin = r0.get_collision_point() + Vector3(0, 8, 0)
+			if ray.is_colliding():
+				pointer.global_transform.origin = ray.get_collision_point()
 
 func update_target_position() -> void:
 	pass
