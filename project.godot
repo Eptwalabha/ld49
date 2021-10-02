@@ -9,12 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "RigidBody",
+"class": "BuildingBlock",
+"language": "GDScript",
+"path": "res://test/Block.gd"
+}, {
 "base": "Spatial",
 "class": "OrbitalCamera",
 "language": "GDScript",
 "path": "res://test/OrbitalCamera.gd"
 } ]
 _global_script_class_icons={
+"BuildingBlock": "",
 "OrbitalCamera": ""
 }
 
@@ -34,6 +40,11 @@ drop-block={
 camera-drag={
 "deadzone": 0.5,
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":3,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+delete-block={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
 

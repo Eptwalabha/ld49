@@ -55,6 +55,7 @@ collision_mask = 2
 
 [node name="Area" type="Area" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.62353, 0 )
+input_ray_pickable = false
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
 shape = SubResource( 3 )
@@ -78,6 +79,8 @@ color = Color( 0.113725, 0.00784314, 0.00784314, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Construction" type="Spatial" parent="."]
 
 [connection signal="orbiting_end" from="OrbitalCamera" to="." method="_on_OrbitalCamera_orbiting_end"]
 [connection signal="orbiting_start" from="OrbitalCamera" to="." method="_on_OrbitalCamera_orbiting_start"]
