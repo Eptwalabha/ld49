@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://test/crane/Crane.tscn" type="PackedScene" id=1]
 [ext_resource path="res://test/Level.gd" type="Script" id=2]
 [ext_resource path="res://test/camera/OrbitalCamera.tscn" type="PackedScene" id=3]
+[ext_resource path="res://test/ui/UI_debug.tscn" type="PackedScene" id=4]
+[ext_resource path="res://test/plan/BuildingPlan.tscn" type="PackedScene" id=5]
 
 [sub_resource type="PhysicsMaterial" id=1]
 rough = true
@@ -38,6 +40,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.73354, 0 )
 
 [node name="StaticBody" type="StaticBody" parent="Ground"]
 collision_layer = 3
+collision_mask = 0
 physics_material_override = SubResource( 1 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Ground/StaticBody"]
@@ -80,17 +83,23 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 14 )
 
 [node name="Destroyer" type="Area" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.05006, 0 )
+collision_layer = 0
+collision_mask = 4
 
 [node name="CollisionShape" type="CollisionShape" parent="Destroyer"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -25, 0 )
 shape = SubResource( 7 )
 
-[node name="Label" type="Label" parent="."]
-margin_right = 283.0
-margin_bottom = 98.0
-
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
+[node name="UI" parent="." instance=ExtResource( 4 )]
+
+[node name="BuildingPlan" parent="." instance=ExtResource( 5 )]
+
+[connection signal="orbiting_end" from="OrbitalCamera" to="." method="_on_OrbitalCamera_orbiting_end"]
 [connection signal="body_entered" from="Destroyer" to="." method="_on_Area_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="check_clicked" from="UI" to="." method="_on_UI_check_clicked"]
+[connection signal="area_created" from="BuildingPlan" to="." method="_on_BuildingPlan_area_created"]
+[connection signal="compute_completed" from="BuildingPlan" to="." method="_on_BuildingPlan_compute_completed"]

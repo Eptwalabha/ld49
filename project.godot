@@ -15,19 +15,31 @@ _global_script_classes=[ {
 "path": "res://test/block/BuildingBlock.gd"
 }, {
 "base": "Spatial",
+"class": "BuildingPlan",
+"language": "GDScript",
+"path": "res://test/plan/BuildingPlan.gd"
+}, {
+"base": "Spatial",
 "class": "Crane",
 "language": "GDScript",
 "path": "res://test/crane/Crane.gd"
 }, {
-"base": "Reference",
+"base": "Spatial",
 "class": "OrbitalCamera",
 "language": "GDScript",
 "path": "res://test/camera/OrbitalCamera.gd"
+}, {
+"base": "Control",
+"class": "UI_debug",
+"language": "GDScript",
+"path": "res://test/ui/UI_debug.gd"
 } ]
 _global_script_class_icons={
 "BuildingBlock": "",
+"BuildingPlan": "",
 "Crane": "",
-"OrbitalCamera": ""
+"OrbitalCamera": "",
+"UI_debug": ""
 }
 
 [application]
@@ -73,6 +85,7 @@ previous-block={
 3d_physics/layer_1="all"
 3d_physics/layer_2="ground"
 3d_physics/layer_3="block"
+3d_physics/layer_5="plan"
 
 [physics]
 

@@ -6,6 +6,7 @@ onready var ray_ground : RayCast = $RayGround
 onready var ray : RayCast = $RayCast
 onready var pointer : MeshInstance = $Debug/Pointer
 onready var camera : OrbitalCamera = $OrbitalCamera
+onready var ui : UI_debug = $UI
 onready var crane : Crane = $Crane
 var m_position : Vector2 = Vector2.ZERO
 var _target : Vector3 = Vector3.ZERO
@@ -13,7 +14,7 @@ const CRANE_SPEED : float = 4.0
 var wakeup_blocks : bool = false
 
 func _ready() -> void:
-	$Label.text = current_block
+	ui.set_type(current_block)
 	var test = GameData.BUILDING_BLOCKS["line"].instance()
 	add_child(test)
 	crane.attach(test)
@@ -29,7 +30,9 @@ func _input(event: InputEvent) -> void:
 			block.sleeping = false
 			block.apply_central_impulse(velocity * block.mass)
 			block.get_parent().remove_child(block)
+			print("new block: ", block)
 			$Construction.add_child(block)
+# warning-ignore:return_value_discarded
 			block.connect("block_deleted", self, "_on_Block_deleted")
 			$Timer.start()
 
@@ -43,7 +46,7 @@ func update_current_block(step: int) -> void:
 	var i = GameData.available_blocks.find(current_block)
 	i = (i + step) % len(GameData.available_blocks)
 	current_block = GameData.available_blocks[i]
-	$Label.text = current_block
+	ui.set_type(current_block)
 
 
 func _physics_process(delta: float) -> void:
@@ -93,3 +96,19 @@ func _on_Timer_timeout() -> void:
 	var next = GameData.BUILDING_BLOCKS[current_block].instance()
 	add_child(next)
 	crane.attach(next)
+
+
+func _on_UI_check_clicked() -> void:
+	compute_percent_match()
+	ui.set_percent(10.1)
+
+
+func compute_percent_match() -> void:
+	yield(get_tree().create_timer(.1), "timeout")
+	$BuildingPlan.make_collision_areas()
+
+func _on_BuildingPlan_area_created() -> void:
+	$BuildingPlan.compute_percent($Construction.get_children())
+
+func _on_BuildingPlan_compute_completed(matching: int, total: int, _unused) -> void:
+	ui.set_percent(float(matching) / float(total) * 100.0)
