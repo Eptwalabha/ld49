@@ -4,7 +4,7 @@
 [ext_resource path="res://test/Level.gd" type="Script" id=2]
 [ext_resource path="res://test/camera/OrbitalCamera.tscn" type="PackedScene" id=3]
 [ext_resource path="res://test/ui/UI.tscn" type="PackedScene" id=4]
-[ext_resource path="res://test/plan/BuildingPlan.tscn" type="PackedScene" id=5]
+[ext_resource path="res://test/ui/UIFade.tscn" type="PackedScene" id=5]
 [ext_resource path="res://test/ui/PauseMenu.tscn" type="PackedScene" id=6]
 
 [sub_resource type="PhysicsMaterial" id=1]
@@ -99,7 +99,7 @@ one_shot = true
 [node name="PauseMenu" parent="." instance=ExtResource( 6 )]
 visible = false
 
-[node name="BuildingPlan" parent="." instance=ExtResource( 5 )]
+[node name="Fade" parent="." instance=ExtResource( 5 )]
 
 [connection signal="orbiting_end" from="OrbitalCamera" to="." method="_on_OrbitalCamera_orbiting_end"]
 [connection signal="body_entered" from="Destroyer" to="." method="_on_Area_body_entered"]
@@ -107,5 +107,5 @@ visible = false
 [connection signal="quit_pressed" from="PauseMenu" to="." method="_on_PauseMenu_quit_pressed"]
 [connection signal="restart_pressed" from="PauseMenu" to="." method="_on_PauseMenu_restart_pressed"]
 [connection signal="resume_game_pressed" from="PauseMenu" to="." method="_on_PauseMenu_resume_game_pressed"]
-[connection signal="area_created" from="BuildingPlan" to="." method="_on_BuildingPlan_area_created"]
-[connection signal="objective_updated" from="BuildingPlan" to="." method="_on_BuildingPlan_objective_updated"]
+[connection signal="fade_in_completed" from="Fade" to="." method="_on_Fade_fade_in_completed"]
+[connection signal="fade_out_completed" from="Fade" to="." method="_on_Fade_fade_out_completed"]

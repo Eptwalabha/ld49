@@ -42,7 +42,7 @@ var levels = get_levels()
 var current_level = "lvl1"
 const SAVE_FILE_NAME = "ld49-unstable.save"
 
-func save() -> void:
+func save() -> bool:
 	var save_file : File = File.new()
 	if save_file.open("user://%s" % SAVE_FILE_NAME, File.WRITE) == OK:
 		var save_data = {}
@@ -52,6 +52,7 @@ func save() -> void:
 			}
 		save_file.store_line(to_json(save_data))
 		save_file.close()
+	return true
 
 func load_save() -> void:
 	var save_file : File = File.new()

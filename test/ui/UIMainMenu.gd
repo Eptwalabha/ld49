@@ -15,7 +15,6 @@ func _ready() -> void:
 
 func set_levels_list() -> void:
 	GameData.load_save()
-	var levels = GameData.levels
 	var any_completed = false
 	for level_id in GameData.levels:
 		var btn = Button.new()

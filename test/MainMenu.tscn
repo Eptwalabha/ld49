@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://test/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://test/ui/UIMainMenu.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/models/3by3-plane.glb" type="PackedScene" id=6]
 [ext_resource path="res://assets/models/3by1-plane.glb" type="PackedScene" id=7]
 [ext_resource path="res://assets/models/cross-plane.glb" type="PackedScene" id=8]
+[ext_resource path="res://test/ui/UIFade.tscn" type="PackedScene" id=9]
 
 [sub_resource type="Environment" id=1]
 background_mode = 1
@@ -55,5 +56,9 @@ environment = SubResource( 1 )
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.953937, 0, 0.300007, -0.228806, 0.64679, 0.727538, -0.194041, -0.762668, 0.616997, 9.40675, 0, 0 )
 
+[node name="Fade" parent="." instance=ExtResource( 9 )]
+
 [connection signal="level_selected" from="UI" to="." method="_on_UI_level_selected"]
 [connection signal="quit_game_pressed" from="UI" to="." method="_on_UI_quit_game_pressed"]
+[connection signal="fade_in_completed" from="Fade" to="." method="_on_Fade_fade_in_completed"]
+[connection signal="fade_out_completed" from="Fade" to="." method="_on_Fade_fade_out_completed"]

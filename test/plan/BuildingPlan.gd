@@ -2,7 +2,7 @@ class_name BuildingPlan
 extends Spatial
 
 signal objective_updated(total, success, failure)
-signal area_created
+signal level_initiated
 
 var points : Array = []
 var matching_blocks : Array = []
@@ -23,10 +23,11 @@ func _ready() -> void:
 		if block is BuildingBlock:
 			block.turn_into_objective()
 	objective.visible = false
+	$Objective/blueprint.visible = true
 
 func make_collision_areas() -> void:
 	if len(points) > 0:
-		emit_signal("area_created")
+		emit_signal("level_initiated")
 		return
 
 	points = []
@@ -67,7 +68,7 @@ func make_collision_areas() -> void:
 		point.connect("body_entered", self, "_area_body_entered", [is_colliding])
 		point.connect("body_exited", self, "_area_body_exited", [is_colliding])
 
-	emit_signal("area_created")
+	emit_signal("level_initiated")
 
 func non_colliding_blocks(the_blocks: Array) -> Array:
 

@@ -13,6 +13,9 @@ var _start_rotation_x := 0.0
 
 const ROTATION_BLOCK = 2.0 * PI
 
+func reset(block_type: String) -> void:
+	pass
+
 func point_at(position: Vector3) -> void:
 	var p2 = position
 	var x = p2.x

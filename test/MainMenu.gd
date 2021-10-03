@@ -3,14 +3,25 @@ extends Spatial
 onready var ui : UIMainMenu = $UI
 
 func _ready() -> void:
-	pass
+	$Fade.fade_in("start")
 
 func _process(delta: float) -> void:
 	$Pivot.rotate(Vector3.UP, delta)
 
 func _on_UI_quit_game_pressed() -> void:
-	get_tree().quit(0)
+	$Fade.fade_out("quit_game")
 
 func _on_UI_level_selected(level_id) -> void:
 	GameData.current_level = level_id
-	get_tree().change_scene("res://test/Level.tscn")
+	$Fade.fade_out("load_game")
+
+func _on_Fade_fade_in_completed(_data) -> void:
+	pass # Replace with function body.
+
+func _on_Fade_fade_out_completed(data) -> void:
+	match data:
+		"quit_game":
+			GameData.save()
+			get_tree().quit(0)
+		"load_game":
+			get_tree().change_scene("res://test/Level.tscn")
