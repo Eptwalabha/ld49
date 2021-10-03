@@ -2,6 +2,7 @@ class_name BuildingPlan
 extends Spatial
 
 signal objective_updated(total, success, failure)
+signal objective_completed
 signal level_initiated
 
 var points : Array = []
@@ -106,7 +107,11 @@ func _area_body_exited(body, is_success) -> void:
 func _update_counters() -> void:
 	if total > 0:
 		emit_signal("objective_updated", total, success_counter, failure_counter)
-
+		if get_percent() > 0.2:
+			emit_signal("objective_completed")
 
 func show_objective(is_visible: bool) -> void:
 	objective.visible = is_visible
+
+func get_percent() -> float:
+	return float(success_counter) / float(total)

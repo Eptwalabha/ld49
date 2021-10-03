@@ -15,15 +15,13 @@ func _ready() -> void:
 
 func set_levels_list() -> void:
 	GameData.load_save()
-	var any_completed = false
 	for level_id in GameData.levels:
 		var btn = Button.new()
 		btn.rect_min_size = Vector2(32, 42)
 		var level = GameData.levels[level_id]
-		any_completed = any_completed or level.completed
 
 		btn.text = "%s" % [tr(level_id)]
-		btn.disabled = not (level.completed or level_id == "lvl1")
+		btn.disabled = not level.unlocked
 		if level.has('title'):
 			btn.text = "%s" % [tr(level.title)]
 

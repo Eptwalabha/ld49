@@ -34,13 +34,30 @@ func get_levels() -> Object:
 		all[lvl_name] = {
 			"path": "res://test/levels/%s" % file_paths[i],
 			"completed": false,
+			"unlocked": i == 0
 		}
 	return all
 
 var levels = get_levels()
+var level_count = len(levels)
 
 var current_level = "lvl1"
 const SAVE_FILE_NAME = "ld49-unstable.save"
+
+func unlock_next_level(has_completed_current: bool = true) -> void:
+	if has_completed_current:
+		levels[current_level].completed = true
+	var next_level = _get_next_level_name()
+	levels[next_level].unlocked = true
+	save()
+
+func next_level() -> void:
+	current_level = _get_next_level_name()
+
+func _get_next_level_name() -> String:
+	var level_ids : Array = levels.keys()
+	var i = level_ids.find(current_level)
+	return level_ids[(i + 1) % level_count]
 
 func save() -> bool:
 	var save_file : File = File.new()
@@ -48,7 +65,8 @@ func save() -> bool:
 		var save_data = {}
 		for level in levels:
 			save_data[level] = {
-				"completed": levels[level].completed
+				"completed": levels[level].completed,
+				"unlocked": levels[level].unlocked
 			}
 		save_file.store_line(to_json(save_data))
 		save_file.close()
@@ -61,7 +79,9 @@ func load_save() -> void:
 	if save_file.open("user://%s" % SAVE_FILE_NAME, File.READ) == OK:
 		var data = parse_json(save_file.get_line())
 		for line in data:
-			levels[line].completed = data[line].completed
+			levels[line].completed = data[line].completed == true
+			if data[line].has("unlocked"):
+				levels[line].unlocked = data[line].unlocked
 		save_file.close()
 
 func erase_save() -> void:
