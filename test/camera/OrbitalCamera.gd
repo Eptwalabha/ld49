@@ -8,8 +8,8 @@ onready var camera : Camera = $Pitch/Camera
 onready var pitch : Spatial = $Pitch
 
 export(float) var min_zoom := 20.0
-export(float) var max_zoom := 200.0
-export(float) var zoom_step := 10.0
+export(float) var max_zoom := 100.0
+export(float) var zoom_step := 15.0
 var _target_zoom : Vector3 = Vector3.ZERO
 
 var dragging : bool = false
@@ -43,14 +43,14 @@ func _input(event: InputEvent) -> void:
 		_target_angle = Vector2(tx, ty)
 
 	if event.is_action_pressed("zoom-in"):
-		var dist = camera.transform.origin.length()
-		dist = max(min_zoom, dist - zoom_step)
-		_target_zoom = camera.transform.origin.direction_to(Vector3.ZERO).normalized() * -dist
+		_update_zoom_target(-zoom_step)
 
 	if event.is_action_pressed("zoom-out"):
-		var dist = camera.transform.origin.length()
-		dist = min(max_zoom, dist + zoom_step)
-		_target_zoom = camera.transform.origin.direction_to(Vector3.ZERO).normalized() * -dist
+		_update_zoom_target(zoom_step)
+
+func _update_zoom_target(step: float) -> void:
+	var dist = clamp(camera.transform.origin.length() + step, min_zoom, max_zoom)
+	_target_zoom = camera.transform.origin.direction_to(Vector3.ZERO).normalized() * -dist
 
 func _start_dragging(event_position: Vector2) -> void:
 	dragging = true

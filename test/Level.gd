@@ -26,12 +26,9 @@ func _input(event: InputEvent) -> void:
 		if crane.hold_something():
 			var block : BuildingBlock = crane.detach()
 			var velocity = crane.chariot_velocity
-			block.gravity_scale = 1
-			block.sleeping = false
-			block.locked = false
+			block.unlock()
 			block.apply_central_impulse(velocity * block.mass)
 			block.get_parent().remove_child(block)
-			print("new block: ", block)
 			$Construction.add_child(block)
 # warning-ignore:return_value_discarded
 			block.connect("block_deleted", self, "_on_Block_deleted")

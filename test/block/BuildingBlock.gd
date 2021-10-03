@@ -9,6 +9,15 @@ var locked : bool = false
 func _ready() -> void:
 	gravity_scale = 0
 
+func unlock() -> void:
+	gravity_scale = 1
+	sleeping = false
+	locked = false
+
+func lock() -> void:
+	gravity_scale = 0
+	locked = true
+
 func _on_Block_input_event(_camera: Node, event: InputEvent, _click_position: Vector3, _click_normal: Vector3, _shape_idx: int) -> void:
 	if locked:
 		return
