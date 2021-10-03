@@ -2,10 +2,10 @@
 
 [ext_resource path="res://test/plan/BuildingPlan.gd" type="Script" id=1]
 
-[sub_resource type="BoxShape" id=2]
+[sub_resource type="BoxShape" id=1]
 extents = Vector3( 3, 1, 1 )
 
-[sub_resource type="BoxShape" id=1]
+[sub_resource type="BoxShape" id=2]
 extents = Vector3( 1, 2, 1 )
 
 [node name="BuildingPlan" type="Spatial"]
@@ -21,19 +21,19 @@ collision_mask = 0
 
 [node name="CollisionShape4" type="CollisionShape" parent="Areas/Area"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 5, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="CollisionShape3" type="CollisionShape" parent="Areas/Area"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, 0 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="CollisionShape2" type="CollisionShape" parent="Areas/Area"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 8, 0 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Areas/Area"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Spatial" type="Spatial" parent="Areas"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.02108, 9.94601, -0.971816 )

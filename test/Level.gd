@@ -22,6 +22,7 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		m_position = event.position
+
 	if event.is_action_pressed("drop-block"):
 		if crane.hold_something():
 			var block : BuildingBlock = crane.detach()
@@ -40,21 +41,31 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("previous-block"):
 		update_current_block(-1)
 
+	if event.is_action_pressed("alt-action"):
+		crane.start_rotation(m_position.x)
+
+	if event.is_action_released("alt-action"):
+		crane.end_rotation()
+		_update_camera_delta_drag(m_position)
+
 func update_current_block(step: int) -> void:
 	var i = GameData.available_blocks.find(current_block)
 	i = (i + step) % len(GameData.available_blocks)
 	current_block = GameData.available_blocks[i]
 	ui.set_type(current_block)
 
-
 func _physics_process(delta: float) -> void:
+	var is_alt_actions = Input.is_action_pressed("alt-action")
 	if not camera.dragging:
-		var from = camera.project_ray_origin(m_position)
-		ray_ground.global_transform.origin = from
-		ray_ground.cast_to = from + camera.project_ray_normal(m_position) * 1000
-		if ray_ground.is_colliding():
-			_target = ray_ground.get_collision_point()
-			$Debug/Target.global_transform.origin = _target
+		if is_alt_actions:
+			crane.update_rotation(m_position.x)
+		else:
+			var from = camera.project_ray_origin(m_position)
+			ray_ground.global_transform.origin = from
+			ray_ground.cast_to = from + camera.project_ray_normal(m_position) * 1000
+			if ray_ground.is_colliding():
+				_target = ray_ground.get_collision_point()
+				$Debug/Target.global_transform.origin = _target
 
 	var p0 = ray.global_transform.origin
 	var p = lerp(Vector3(p0.x, 80, p0.z), Vector3(_target.x, 80, _target.z), delta * CRANE_SPEED)
@@ -69,6 +80,9 @@ func _process(_delta: float) -> void:
 	crane.point_at(ray.global_transform.origin)
 
 func _on_OrbitalCamera_orbiting_end(mouse_position: Vector2) -> void:
+	_update_camera_delta_drag(mouse_position)
+
+func _update_camera_delta_drag(mouse_position: Vector2) -> void:
 	var _end_drag : Vector2 = camera.unproject_position(_target)
 	camera.set_delta_drag(mouse_position - _end_drag)
 
@@ -98,8 +112,6 @@ func _on_Timer_timeout() -> void:
 
 func _on_UI_check_clicked() -> void:
 	compute_percent_match()
-	ui.set_percent(10.1)
-
 
 func compute_percent_match() -> void:
 	yield(get_tree().create_timer(.1), "timeout")
