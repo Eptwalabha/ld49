@@ -24,7 +24,7 @@ mass = 200.0
 [node name="CollisionShape" parent="." index="0"]
 shape = SubResource( 1 )
 
-[node name="Outline" parent="." index="1"]
+[node name="Outline" parent="Outline" index="0"]
 mesh = SubResource( 3 )
 
 [node name="line-block" parent="." index="2" instance=ExtResource( 2 )]

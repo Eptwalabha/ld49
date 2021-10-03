@@ -3,7 +3,7 @@ extends RigidBody
 
 signal block_deleted
 
-onready var outline : MeshInstance = $Outline
+onready var outline : Spatial = $Outline
 var locked : bool = false
 
 func _ready() -> void:

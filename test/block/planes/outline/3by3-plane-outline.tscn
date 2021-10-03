@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://material/outline.tres" type="Material" id=1]
+[ext_resource path="res://assets/models/outlines/3by3-plane-outline.glb" type="PackedScene" id=2]
+
+[node name="3by3-plane-outline" instance=ExtResource( 2 )]
+
+[node name="plane33-outline" parent="." index="0"]
+material/0 = ExtResource( 1 )
