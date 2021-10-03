@@ -12,10 +12,13 @@ func _ready() -> void:
 func unlock() -> void:
 	gravity_scale = 1
 	sleeping = false
+	can_sleep = true
 	locked = false
+	apply_central_impulse(Vector3.DOWN)
 
 func lock() -> void:
 	gravity_scale = 0
+	can_sleep = false
 	locked = true
 
 func _on_Block_input_event(_camera: Node, event: InputEvent, _click_position: Vector3, _click_normal: Vector3, _shape_idx: int) -> void:
