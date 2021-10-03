@@ -53,6 +53,11 @@ _global_script_classes=[ {
 "class": "UILabel",
 "language": "GDScript",
 "path": "res://test/ui/UILabel.gd"
+}, {
+"base": "Control",
+"class": "UIMainMenu",
+"language": "GDScript",
+"path": "res://test/ui/UIMainMenu.gd"
 } ]
 _global_script_class_icons={
 "BlockPreview": "",
@@ -63,7 +68,8 @@ _global_script_class_icons={
 "PauseMenu": "",
 "UI": "",
 "UIBlockPreview": "",
-"UILabel": ""
+"UILabel": "",
+"UIMainMenu": ""
 }
 
 [application]

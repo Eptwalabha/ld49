@@ -1,0 +1,228 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/fonts/font_text.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/fonts/font_title.tres" type="DynamicFont" id=2]
+[ext_resource path="res://test/ui/UIMainMenu.gd" type="Script" id=3]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 16
+custom_constants/margin_top = 32
+custom_constants/margin_left = 64
+custom_constants/margin_bottom = 32
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+margin_left = 64.0
+margin_top = 32.0
+margin_right = 1008.0
+margin_bottom = 568.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+margin_top = 104.0
+margin_right = 203.0
+margin_bottom = 432.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_vertical = 6
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+margin_right = 203.0
+margin_bottom = 34.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.0666667, 0.678431, 0.901961, 1 )
+text = "LUDUM-DARE 49"
+align = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+margin_top = 38.0
+margin_right = 203.0
+margin_bottom = 72.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.85098, 0.831373, 0.478431, 1 )
+text = "\"unstable\""
+align = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+margin_top = 76.0
+margin_right = 203.0
+margin_bottom = 276.0
+rect_min_size = Vector2( 0, 200 )
+size_flags_vertical = 6
+alignment = 1
+
+[node name="Resume" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+margin_top = 50.0
+margin_right = 203.0
+margin_bottom = 98.0
+rect_min_size = Vector2( 0, 48 )
+custom_fonts/font = ExtResource( 1 )
+text = "PLAY"
+flat = true
+
+[node name="Help" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+margin_top = 102.0
+margin_right = 203.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 0, 48 )
+custom_fonts/font = ExtResource( 1 )
+text = "Help / about"
+flat = true
+
+[node name="Quit" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+margin_top = 280.0
+margin_right = 203.0
+margin_bottom = 328.0
+rect_min_size = Vector2( 0, 48 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.756863, 0.027451, 0.027451, 1 )
+text = "QUIT GAME"
+flat = true
+
+[node name="Help" type="Control" parent="MarginContainer/HBoxContainer"]
+margin_left = 207.0
+margin_right = 944.0
+margin_bottom = 536.0
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/Help"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 64
+custom_constants/margin_top = 64
+custom_constants/margin_left = 64
+custom_constants/margin_bottom = 64
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/HBoxContainer/Help/MarginContainer"]
+margin_left = 64.0
+margin_top = 64.0
+margin_right = 673.0
+margin_bottom = 472.0
+color = Color( 0.0235294, 0.396078, 0.792157, 0.368627 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/Help/MarginContainer/ColorRect"]
+margin_right = 609.0
+margin_bottom = 408.0
+custom_constants/margin_right = 32
+custom_constants/margin_top = 32
+custom_constants/margin_left = 32
+custom_constants/margin_bottom = 32
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Help/MarginContainer/ColorRect/MarginContainer"]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 577.0
+margin_bottom = 376.0
+
+[node name="Title" type="Label" parent="MarginContainer/HBoxContainer/Help/MarginContainer/ColorRect/MarginContainer/VBoxContainer"]
+margin_right = 545.0
+margin_bottom = 34.0
+custom_fonts/font = ExtResource( 2 )
+text = "How to play?"
+align = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/Help/MarginContainer/ColorRect/MarginContainer/VBoxContainer"]
+margin_top = 38.0
+margin_right = 545.0
+margin_bottom = 276.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/normal_font = ExtResource( 1 )
+text = "TODO:
+Explain how this game's \"very intuitive\" controls work."
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="MarginContainer/HBoxContainer/Help/MarginContainer/ColorRect/MarginContainer/VBoxContainer"]
+margin_top = 280.0
+margin_right = 545.0
+margin_bottom = 344.0
+rect_min_size = Vector2( 0, 64 )
+size_flags_horizontal = 3
+size_flags_vertical = 9
+custom_fonts/normal_font = ExtResource( 1 )
+text = "This \"game\" was made in 48h
+ for the 49th edition of Ludum-dare by @eptwalabha"
+
+[node name="Levels" type="Control" parent="MarginContainer/HBoxContainer"]
+visible = false
+margin_left = 207.0
+margin_right = 944.0
+margin_bottom = 536.0
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/Levels"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 64
+custom_constants/margin_top = 64
+custom_constants/margin_left = 64
+custom_constants/margin_bottom = 64
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/HBoxContainer/Levels/MarginContainer"]
+margin_left = 64.0
+margin_top = 64.0
+margin_right = 673.0
+margin_bottom = 472.0
+color = Color( 0.184314, 0.184314, 0.184314, 0.368627 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/Levels/MarginContainer/ColorRect"]
+margin_right = 609.0
+margin_bottom = 408.0
+custom_constants/margin_right = 32
+custom_constants/margin_top = 32
+custom_constants/margin_left = 32
+custom_constants/margin_bottom = 32
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Levels/MarginContainer/ColorRect/MarginContainer"]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 577.0
+margin_bottom = 376.0
+
+[node name="Title" type="Label" parent="MarginContainer/HBoxContainer/Levels/MarginContainer/ColorRect/MarginContainer/VBoxContainer"]
+margin_right = 545.0
+margin_bottom = 34.0
+custom_fonts/font = ExtResource( 2 )
+text = "Levels"
+align = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/Levels/MarginContainer/ColorRect/MarginContainer/VBoxContainer"]
+margin_top = 38.0
+margin_right = 545.0
+margin_bottom = 344.0
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Levels/MarginContainer/ColorRect/MarginContainer/VBoxContainer/ScrollContainer"]
+margin_right = 545.0
+size_flags_horizontal = 3
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Resume" to="." method="_on_Resume_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Help" to="." method="_on_Help_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]

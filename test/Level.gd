@@ -150,7 +150,7 @@ func _on_PauseMenu_resume_game_pressed() -> void:
 	close_pause_menu()
 
 func _on_PauseMenu_quit_pressed() -> void:
-	get_tree().quit()
+	get_tree().change_scene("res://test/MainMenu.tscn")
 
 func _on_PauseMenu_restart_pressed() -> void:
 	pass # Replace with function body.
