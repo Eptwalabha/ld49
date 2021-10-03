@@ -100,8 +100,10 @@ zoom-out={
 [physics]
 
 common/enable_pause_aware_picking=true
-3d/default_gravity=50.0
-3d/default_linear_damp=0.05
+3d/physics_engine="GodotPhysics"
+3d/active_soft_world=false
+3d/default_gravity=25.0
+3d/default_linear_damp=1.0
 
 [rendering]
 
