@@ -51,6 +51,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_released("alt-action"):
 		crane.end_rotation()
 		_update_camera_delta_drag(m_position)
+	
 
 func update_current_block(step: int) -> void:
 	var i = GameData.available_blocks.find(current_block)
@@ -82,6 +83,7 @@ func _physics_process(delta: float) -> void:
 
 func _process(_delta: float) -> void:
 	crane.point_at(ray.global_transform.origin)
+	objective.show_objective(Input.is_action_pressed("show-objective"))
 
 func _on_OrbitalCamera_orbiting_end(mouse_position: Vector2) -> void:
 	_update_camera_delta_drag(mouse_position)

@@ -9,6 +9,13 @@ var locked : bool = false
 func _ready() -> void:
 	gravity_scale = 0
 
+func turn_into_objective() -> void:
+	mode = RigidBody.MODE_STATIC
+	collision_layer = 16
+	collision_mask = 0
+	sleeping = true
+	input_ray_pickable = false
+
 func unlock() -> void:
 	gravity_scale = 1
 	sleeping = false

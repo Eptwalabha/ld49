@@ -1,41 +1,34 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://test/plan/BuildingPlan.gd" type="Script" id=1]
-
-[sub_resource type="BoxShape" id=1]
-extents = Vector3( 3, 1, 1 )
-
-[sub_resource type="BoxShape" id=2]
-extents = Vector3( 1, 2, 1 )
+[ext_resource path="res://test/block/TowerBlock.tscn" type="PackedScene" id=2]
+[ext_resource path="res://test/block/planes/Plane3-3.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/models/misc/blueprint.glb" type="PackedScene" id=4]
 
 [node name="BuildingPlan" type="Spatial"]
 script = ExtResource( 1 )
 
-[node name="Areas" type="Spatial" parent="."]
-
-[node name="Area" type="Area" parent="Areas"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0 )
-input_ray_pickable = false
-collision_layer = 16
-collision_mask = 0
-
-[node name="CollisionShape4" type="CollisionShape" parent="Areas/Area"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 5, 0 )
-shape = SubResource( 1 )
-
-[node name="CollisionShape3" type="CollisionShape" parent="Areas/Area"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, 0 )
-shape = SubResource( 2 )
-
-[node name="CollisionShape2" type="CollisionShape" parent="Areas/Area"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 8, 0 )
-shape = SubResource( 2 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Areas/Area"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
-shape = SubResource( 2 )
-
-[node name="Spatial" type="Spatial" parent="Areas"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.02108, 9.94601, -0.971816 )
-
 [node name="Points" type="Spatial" parent="."]
+
+[node name="Objective" type="Spatial" parent="."]
+visible = false
+
+[node name="TowerBlock" parent="Objective" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 2 )
+
+[node name="TowerBlock2" parent="Objective" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 6.5, -2 )
+
+[node name="TowerBlock3" parent="Objective" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 6.5, 2 )
+
+[node name="TowerBlock4" parent="Objective" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -2 )
+
+[node name="Plane3-3" parent="Objective" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.25, 0 )
+
+[node name="Plane3-4" parent="Objective" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.75, 0 )
+
+[node name="blueprint" parent="Objective" instance=ExtResource( 4 )]
