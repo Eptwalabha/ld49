@@ -80,11 +80,17 @@ func _handle_game_input(event: InputEvent) -> void:
 			block.connect("block_deleted", self, "_on_Block_deleted")
 			$Timer.start()
 
-	if event.is_action_pressed("next-block"):
-		update_current_block(1)
+	if Input.is_action_pressed("alt-action"):
+		if event.is_action_pressed("zoom-in"):
+			camera.zoom(true)
+		if event.is_action_pressed("zoom-out"):
+			camera.zoom(false)
+	else:
+		if event.is_action_pressed("next-block"):
+			update_current_block(1)
 
-	if event.is_action_pressed("previous-block"):
-		update_current_block(-1)
+		if event.is_action_pressed("previous-block"):
+			update_current_block(-1)
 
 	if event.is_action_pressed("alt-action"):
 		crane.start_rotation(m_position.x)

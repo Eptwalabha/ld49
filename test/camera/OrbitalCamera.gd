@@ -42,10 +42,10 @@ func _input(event: InputEvent) -> void:
 		var ty = ratio.y * ORBITAL_ROTATION_Y
 		_target_angle = Vector2(tx, ty)
 
-	if event.is_action_pressed("zoom-in"):
+func zoom(zoom_in: bool) -> void:
+	if zoom_in:
 		_update_zoom_target(-zoom_step)
-
-	if event.is_action_pressed("zoom-out"):
+	else:
 		_update_zoom_target(zoom_step)
 
 func _update_zoom_target(step: float) -> void:
