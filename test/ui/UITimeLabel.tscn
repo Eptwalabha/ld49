@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/images/time.svg" type="Texture" id=1]
+[ext_resource path="res://test/ui/UILabel.tscn" type="PackedScene" id=2]
+
+[node name="UILabel" instance=ExtResource( 2 )]
+
+[node name="Sprite" parent="MarginContainer/HBoxContainer/TextureRect" index="0"]
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 1 )

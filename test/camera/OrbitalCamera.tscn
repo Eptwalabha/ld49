@@ -4,6 +4,7 @@
 
 [node name="OrbitalCamera" type="Spatial"]
 script = ExtResource( 1 )
+max_zoom = 80.0
 
 [node name="Pitch" type="Spatial" parent="."]
 

@@ -6,7 +6,7 @@ onready var ray_ground : RayCast = $RayGround
 onready var ray : RayCast = $RayCast
 onready var pointer : MeshInstance = $Debug/Pointer
 onready var camera : OrbitalCamera = $OrbitalCamera
-onready var ui : UI_debug = $UI
+onready var ui : UI = $UI
 onready var crane : Crane = $Crane
 var m_position : Vector2 = Vector2.ZERO
 var _target : Vector3 = Vector3.ZERO
@@ -22,6 +22,7 @@ func _ready() -> void:
 	add_child(block)
 	crane.attach(block)
 	objective.make_collision_areas()
+	ui.reset()
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -51,7 +52,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_released("alt-action"):
 		crane.end_rotation()
 		_update_camera_delta_drag(m_position)
-	
+
 
 func update_current_block(step: int) -> void:
 	var i = GameData.available_blocks.find(current_block)
@@ -81,9 +82,10 @@ func _physics_process(delta: float) -> void:
 	if wakeup_blocks:
 		_wakeup_blocks()
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	crane.point_at(ray.global_transform.origin)
 	objective.show_objective(Input.is_action_pressed("show-objective"))
+	ui.add_time(delta)
 
 func _on_OrbitalCamera_orbiting_end(mouse_position: Vector2) -> void:
 	_update_camera_delta_drag(mouse_position)
@@ -114,10 +116,6 @@ func _on_Timer_timeout() -> void:
 	var next = GameData.BUILDING_BLOCKS[current_block].instance()
 	add_child(next)
 	crane.attach(next)
-
-
-func _on_UI_check_clicked() -> void:
-	compute_percent_match()
 
 func _on_BuildingPlan_area_created() -> void:
 	pass

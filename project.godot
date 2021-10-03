@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Spatial",
+"class": "BlockPreview",
+"language": "GDScript",
+"path": "res://test/ui/Preview.gd"
+}, {
 "base": "RigidBody",
 "class": "BuildingBlock",
 "language": "GDScript",
@@ -30,16 +35,29 @@ _global_script_classes=[ {
 "path": "res://test/camera/OrbitalCamera.gd"
 }, {
 "base": "Control",
-"class": "UI_debug",
+"class": "UI",
 "language": "GDScript",
-"path": "res://test/ui/UI_debug.gd"
+"path": "res://test/ui/UI.gd"
+}, {
+"base": "Control",
+"class": "UIBlockPreview",
+"language": "GDScript",
+"path": "res://test/ui/UIBlockPreview.gd"
+}, {
+"base": "Control",
+"class": "UILabel",
+"language": "GDScript",
+"path": "res://test/ui/UILabel.gd"
 } ]
 _global_script_class_icons={
+"BlockPreview": "",
 "BuildingBlock": "",
 "BuildingPlan": "",
 "Crane": "",
 "OrbitalCamera": "",
-"UI_debug": ""
+"UI": "",
+"UIBlockPreview": "",
+"UILabel": ""
 }
 
 [application]

@@ -68,7 +68,7 @@ func _process(delta: float) -> void:
 	if dragging:
 		global_transform.basis = _initial_x_basis.rotated(Vector3.UP, _target_angle.x)
 		pitch.transform.basis = _initial_y_basis.rotated(Vector3.FORWARD, _target_angle.y)
-		pitch.rotation_degrees.z = clamp(pitch.rotation_degrees.z, -30, 30)
+		pitch.rotation_degrees.z = clamp(pitch.rotation_degrees.z, -30, 50)
 	camera.transform.origin = lerp(camera.transform.origin, _target_zoom, delta * 6.0)
 
 func set_delta_drag(delta: Vector2) -> void:

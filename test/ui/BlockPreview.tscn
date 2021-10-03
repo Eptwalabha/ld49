@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://test/block/planes/PlaneCross.tscn" type="PackedScene" id=2]
+[ext_resource path="res://test/ui/Preview.gd" type="Script" id=3]
+
+[sub_resource type="PhysicsMaterial" id=1]
+rough = true
+
+[node name="Spatial" type="Spatial"]
+script = ExtResource( 3 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 5, 5, 5 )
+current = true
+
+[node name="Pivot" type="Spatial" parent="."]
+
+[node name="CurrentBlock" parent="Pivot" instance=ExtResource( 2 )]
+physics_material_override = SubResource( 1 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.860778, 0.333795, -0.384244, 0, 0.754927, 0.655809, 0.508981, -0.564506, 0.649824, -8.41033, 2.61001, 1.97267 )
