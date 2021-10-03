@@ -15,9 +15,9 @@ var wakeup_blocks : bool = false
 
 func _ready() -> void:
 	ui.set_type(current_block)
-	var test = GameData.BUILDING_BLOCKS["line"].instance()
-	add_child(test)
-	crane.attach(test)
+	var block = GameData.BUILDING_BLOCKS["line"].instance()
+	add_child(block)
+	crane.attach(block)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -28,6 +28,7 @@ func _input(event: InputEvent) -> void:
 			var velocity = crane.chariot_velocity
 			block.gravity_scale = 1
 			block.sleeping = false
+			block.locked = false
 			block.apply_central_impulse(velocity * block.mass)
 			block.get_parent().remove_child(block)
 			print("new block: ", block)

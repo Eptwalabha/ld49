@@ -27,6 +27,7 @@ func detach() -> BuildingBlock:
 	return thing
 
 func attach(something: BuildingBlock) -> void:
+	something.locked = true
 	hook.remote_path = something.get_path()
 	_thing_attached = something
 
