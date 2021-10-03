@@ -13,11 +13,15 @@ var _target : Vector3 = Vector3.ZERO
 const CRANE_SPEED : float = 4.0
 var wakeup_blocks : bool = false
 
+onready var objective : BuildingPlan = $BuildingPlan
+
+
 func _ready() -> void:
 	ui.set_type(current_block)
 	var block = GameData.BUILDING_BLOCKS["line"].instance()
 	add_child(block)
 	crane.attach(block)
+	objective.make_collision_areas()
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -113,12 +117,11 @@ func _on_Timer_timeout() -> void:
 func _on_UI_check_clicked() -> void:
 	compute_percent_match()
 
-func compute_percent_match() -> void:
-	yield(get_tree().create_timer(.1), "timeout")
-	$BuildingPlan.make_collision_areas()
-
 func _on_BuildingPlan_area_created() -> void:
-	$BuildingPlan.compute_percent($Construction.get_children())
+	pass
 
-func _on_BuildingPlan_compute_completed(matching: int, total: int, _unused) -> void:
-	ui.set_percent(float(matching) / float(total) * 100.0)
+func compute_percent_match() -> void:
+	ui.set_percent(float(objective.counter) / float(objective.total) * 100.0)
+
+func _on_BuildingPlan_objective_updated(total: int, success: int, _failure: int) -> void:
+	ui.set_percent(float(success) / float(total) * 100.0)

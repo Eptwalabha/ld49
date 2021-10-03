@@ -1,13 +1,16 @@
 class_name BuildingPlan
 extends Spatial
 
-signal compute_completed(matching, total, unused)
+signal objective_updated(total, success, failure)
 signal area_created
 
 var points : Array = []
 var matching_blocks : Array = []
 var non_matching_blocks : Array = []
 var decimate_points := false
+var success_counter : int = 0
+var total : int = 0
+
 onready var point_container : Spatial = $Points
 
 const STEP : float = 1.0
@@ -32,8 +35,8 @@ func make_collision_areas() -> void:
 	for x in range(nx):
 		for y in range(ny):
 			for z in range(nz):
-				var point_area = Area.new()
-				point_area.collision_layer = 16
+				var point_area : Area = Area.new()
+				point_area.collision_layer = 0
 				point_area.collision_mask = 16
 				point_area.input_ray_pickable = false
 				point_container.add_child(point_area)
@@ -55,47 +58,45 @@ func make_collision_areas() -> void:
 			if point.overlaps_area(area):
 				is_colliding = true
 		if is_colliding:
+			point.collision_mask = 4
+			point.connect("body_entered", self, "_area_body_entered", [point])
+			point.connect("body_exited", self, "_area_body_exited", [point])
 			matching_points.push_back(point)
 		else:
 			point_container.remove_child(point)
 
 	points = matching_points
+	total = len(points)
+
 	emit_signal("area_created")
 
-func compute_percent(the_blocks: Array) -> void:
-	var total = len(points)
-	if total == 0:
-		return
+func non_colliding_blocks(the_blocks: Array) -> Array:
 
-	$Areas.transform.origin = Vector3.ZERO
+	var unused = []
+	var colliding = []
 
 	for point in points:
-		point.collision_layer = 4
-		point.collision_mask = 4
-
-	yield(get_tree(), "physics_frame")
-	yield(get_tree(), "physics_frame")
-	yield(get_tree(), "physics_frame")
-
-	matching_blocks = []
-	non_matching_blocks = []
-	var matching = 0
-
-	for point in points:
-		if not point is Area:
-			continue
-
-		var match_block = false
 		for block in the_blocks:
 			if point.overlaps_body(block):
-				match_block = true
-				if matching_blocks.find(block) == -1:
-					matching_blocks.push_back(block)
-		if match_block:
-			matching += 1
+				if colliding.find(block) == -1:
+					colliding.push_back(block)
 
 	for block in the_blocks:
-		if matching_blocks.find(block) == -1:
-			non_matching_blocks.push_back(block)
+		if colliding.find(block) == -1:
+			unused.push_back(block)
 
-	emit_signal("compute_completed", matching, total, non_matching_blocks)
+	return unused
+
+func _area_body_entered(body, _area) -> void:
+	if body is BuildingBlock:
+		success_counter += 1
+		_update_counters()
+
+func _area_body_exited(body, _area) -> void:
+	if body is BuildingBlock:
+		success_counter -= 1
+		_update_counters()
+
+func _update_counters() -> void:
+	if total > 0:
+		emit_signal("objective_updated", total, success_counter, 0)

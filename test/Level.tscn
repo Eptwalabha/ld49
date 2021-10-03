@@ -102,4 +102,4 @@ one_shot = true
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="check_clicked" from="UI" to="." method="_on_UI_check_clicked"]
 [connection signal="area_created" from="BuildingPlan" to="." method="_on_BuildingPlan_area_created"]
-[connection signal="compute_completed" from="BuildingPlan" to="." method="_on_BuildingPlan_compute_completed"]
+[connection signal="objective_updated" from="BuildingPlan" to="." method="_on_BuildingPlan_objective_updated"]
