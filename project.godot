@@ -35,6 +35,11 @@ _global_script_classes=[ {
 "path": "res://test/camera/OrbitalCamera.gd"
 }, {
 "base": "Control",
+"class": "PauseMenu",
+"language": "GDScript",
+"path": "res://test/ui/PauseMenu.gd"
+}, {
+"base": "Control",
 "class": "UI",
 "language": "GDScript",
 "path": "res://test/ui/UI.gd"
@@ -55,6 +60,7 @@ _global_script_class_icons={
 "BuildingPlan": "",
 "Crane": "",
 "OrbitalCamera": "",
+"PauseMenu": "",
 "UI": "",
 "UIBlockPreview": "",
 "UILabel": ""

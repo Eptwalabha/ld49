@@ -6,12 +6,14 @@ onready var ray_ground : RayCast = $RayGround
 onready var ray : RayCast = $RayCast
 onready var pointer : MeshInstance = $Debug/Pointer
 onready var camera : OrbitalCamera = $OrbitalCamera
+onready var pause_menu : PauseMenu = $PauseMenu
 onready var ui : UI = $UI
 onready var crane : Crane = $Crane
 var m_position : Vector2 = Vector2.ZERO
 var _target : Vector3 = Vector3.ZERO
 const CRANE_SPEED : float = 4.0
 var wakeup_blocks : bool = false
+var playing : bool = false
 
 onready var objective : BuildingPlan = $BuildingPlan
 
@@ -21,14 +23,31 @@ func _ready() -> void:
 	var block = GameData.BUILDING_BLOCKS["line"].instance()
 	add_child(block)
 	crane.attach(block)
+	reset()
+
+func reset() -> void:
 	objective.make_collision_areas()
-	ui.reset()
 
 func _input(event: InputEvent) -> void:
+
+	if playing:
+		_handle_game_input(event)
+	else:
+		_handle_pause_input(event)
+
+func _handle_pause_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		close_pause_menu()
+
+func _handle_game_input(event: InputEvent) -> void:
+
+	if event.is_action_pressed("ui_cancel"):
+		open_pause_menu()
+
 	if event is InputEventMouseMotion:
 		m_position = event.position
 
-	if event.is_action_pressed("drop-block"):
+	if event.is_action_pressed("drop-block") and playing:
 		if crane.hold_something():
 			var block : BuildingBlock = crane.detach()
 			var velocity = crane.chariot_velocity
@@ -83,9 +102,10 @@ func _physics_process(delta: float) -> void:
 		_wakeup_blocks()
 
 func _process(delta: float) -> void:
-	crane.point_at(ray.global_transform.origin)
-	objective.show_objective(Input.is_action_pressed("show-objective"))
-	ui.add_time(delta)
+	if playing:
+		crane.point_at(ray.global_transform.origin)
+		objective.show_objective(Input.is_action_pressed("show-objective"))
+		ui.add_time(delta)
 
 func _on_OrbitalCamera_orbiting_end(mouse_position: Vector2) -> void:
 	_update_camera_delta_drag(mouse_position)
@@ -111,17 +131,36 @@ func _on_Area_body_entered(body: Node) -> void:
 	if body is BuildingBlock:
 		body.queue_free()
 
-
 func _on_Timer_timeout() -> void:
 	var next = GameData.BUILDING_BLOCKS[current_block].instance()
 	add_child(next)
 	crane.attach(next)
 
 func _on_BuildingPlan_area_created() -> void:
-	pass
+	playing = true
+	ui.reset()
 
 func compute_percent_match() -> void:
 	ui.set_percent(float(objective.counter) / float(objective.total) * 100.0)
 
 func _on_BuildingPlan_objective_updated(total: int, success: int, _failure: int) -> void:
 	ui.set_percent(float(success) / float(total) * 100.0)
+
+func _on_PauseMenu_resume_game_pressed() -> void:
+	close_pause_menu()
+
+func _on_PauseMenu_quit_pressed() -> void:
+	get_tree().quit()
+
+func _on_PauseMenu_restart_pressed() -> void:
+	pass # Replace with function body.
+
+func open_pause_menu() -> void:
+	playing = false
+	pause_menu.visible = true
+	PhysicsServer.set_active(false)
+
+func close_pause_menu() -> void:
+	playing = true
+	PhysicsServer.set_active(true)
+	pause_menu.visible = false
