@@ -42,9 +42,7 @@ func reset_level() -> void:
 	current_block = "tower"
 	ui.reset()
 	ui.set_type(current_block)
-	var block = GameData.BUILDING_BLOCKS["line"].instance()
-	add_child(block)
-	crane.attach(block)
+	crane.spawn_block(current_block)
 	fade.fade_in("level_start")
 
 func _input(event: InputEvent) -> void:
@@ -69,12 +67,15 @@ func _handle_game_input(event: InputEvent) -> void:
 
 	if event.is_action_pressed("drop-block") and playing:
 		if crane.hold_something():
-			var block : BuildingBlock = crane.detach()
+			var block : BuildingBlock = crane.get_current_block()
+			var t = block.global_transform
+			crane.detach()
 			var velocity = crane.chariot_velocity
 			block.unlock()
-			block.apply_central_impulse(velocity * block.mass)
-			block.get_parent().remove_child(block)
+#			block.get_parent().remove_child(block)
 			block_container.add_child(block)
+			block.apply_central_impulse(velocity * block.mass)
+			block.global_transform = t
 # warning-ignore:return_value_discarded
 			block.connect("block_deleted", self, "_on_Block_deleted")
 			$Timer.start()
@@ -98,6 +99,8 @@ func update_current_block(step: int) -> void:
 	i = (i + step) % len(GameData.available_blocks)
 	current_block = GameData.available_blocks[i]
 	ui.set_type(current_block)
+	if $Timer.is_stopped():
+		crane.spawn_block(current_block)
 
 func _physics_process(delta: float) -> void:
 	var is_alt_actions = Input.is_action_pressed("alt-action")
@@ -152,9 +155,7 @@ func _on_Area_body_entered(body: Node) -> void:
 		body.queue_free()
 
 func _on_Timer_timeout() -> void:
-	var next = GameData.BUILDING_BLOCKS[current_block].instance()
-	add_child(next)
-	crane.attach(next)
+	crane.spawn_block(current_block)
 
 func compute_percent_match() -> void:
 	ui.set_percent(float(objective.counter) / float(objective.total) * 100.0)

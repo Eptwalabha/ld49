@@ -13,9 +13,6 @@ var _start_rotation_x := 0.0
 
 const ROTATION_BLOCK = 2.0 * PI
 
-func reset(block_type: String) -> void:
-	pass
-
 func point_at(position: Vector3) -> void:
 	var p2 = position
 	var x = p2.x
@@ -29,17 +26,23 @@ func point_at(position: Vector3) -> void:
 func hold_something() -> bool:
 	return _building_block != null and _building_block is BuildingBlock
 
-func detach() -> BuildingBlock:
-	var thing = _building_block
+func spawn_block(block_type: String) -> void:
+	if _building_block != null:
+		remove_child(_building_block)
+		_building_block.queue_free()
+	_building_block = GameData.BUILDING_BLOCKS[block_type].instance()
+	add_child(_building_block)
+	_building_block.lock()
+	hook_rt.remote_path = _building_block.get_path()
+
+func get_current_block() -> BuildingBlock:
+	return _building_block
+
+func detach() -> void:
+	remove_child(_building_block)
 	_building_block = null
 	hook_rt.remote_path = ""
 	end_rotation()
-	return thing
-
-func attach(something: BuildingBlock) -> void:
-	something.lock()
-	hook_rt.remote_path = something.get_path()
-	_building_block = something
 
 func _process(delta: float) -> void:
 	chariot_velocity = (chariot.global_transform.origin - _last_chariot_position) / delta

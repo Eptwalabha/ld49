@@ -37,16 +37,40 @@ transform = Transform( 0.502803, 0.577329, 0.643336, -0.754102, 0.656757, 0, -0.
 transform = Transform( 0.863072, -0.24789, 0.440065, 0.276057, 0.961141, 0, -0.422964, 0.121483, 0.897966, -4.16666, 4.86355, 5.93272 )
 
 [node name="tower-block" parent="Pivot" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.88495, 4.33177, 0 )
+transform = Transform( 1, 0, 0, 0, 0.693716, 0.720249, 0, -0.720249, 0.693716, 4.88495, 5.57558, -3.22539 )
 
 [node name="tower-block2" parent="Pivot" instance=ExtResource( 4 )]
-transform = Transform( 0.847465, 0.222793, 0.481837, 0, 0.907668, -0.41969, -0.530851, 0.355672, 0.769216, -7.35277, -5.80442, -5.33159 )
+transform = Transform( 0.847465, 0.222793, 0.481837, -0.382345, 0.885836, 0.262881, -0.36826, -0.407011, 0.835899, -7.35277, -5.29613, 0.37658 )
 
 [node name="3by3-plane" parent="Pivot" instance=ExtResource( 6 )]
-transform = Transform( 0.683809, -0.524998, -0.506737, 0, 0.694483, -0.71951, 0.729661, 0.492007, 0.474893, 10.6155, 0, 0 )
+transform = Transform( 0.683809, -0.524998, -0.506737, 0.525537, 0.836141, -0.157095, 0.506178, -0.158887, 0.847667, 10.6155, 2.57056, -0.105435 )
+
+[node name="3by1-plane2" parent="Pivot" instance=ExtResource( 7 )]
+transform = Transform( -0.636241, -0.640756, -0.429687, -0.696059, 0.716953, -0.0384698, 0.332715, 0.274612, -0.902159, 9.04982, 1.07129, -2.80584 )
+
+[node name="basic-block2" parent="Pivot" instance=ExtResource( 5 )]
+transform = Transform( -0.636241, -0.640756, -0.429687, -0.696059, 0.716953, -0.0384698, 0.332715, 0.274612, -0.902159, -3.03099, -4.48806, -1.64255 )
+
+[node name="cross-plane3" parent="Pivot" instance=ExtResource( 8 )]
+transform = Transform( -0.636241, -0.640756, -0.429687, -0.696059, 0.716953, -0.0384698, 0.332715, 0.274612, -0.902159, -8.36024, -2.04165, 2.29749 )
+
+[node name="cross-plane4" parent="Pivot" instance=ExtResource( 8 )]
+transform = Transform( 0.409187, 0.559627, -0.720683, -0.744131, 0.661755, 0.0913679, 0.528048, 0.498897, 0.687218, 2.11146, 5.5265, -8.54203 )
+
+[node name="line-block2" parent="Pivot" instance=ExtResource( 3 )]
+transform = Transform( 0.493868, -0.0804935, -0.865803, -0.374274, 0.87907, -0.295219, 0.784865, 0.469847, 0.404019, -8.55226, 7.30688, -1.22641 )
+
+[node name="tower-block3" parent="Pivot" instance=ExtResource( 4 )]
+transform = Transform( 0.0651882, 0.0589703, -0.996129, -0.670854, 0.74159, 0, 0.738719, 0.668257, 0.0879034, -2.0838, 0.840206, 4.58331 )
+
+[node name="tower-block4" parent="Pivot" instance=ExtResource( 4 )]
+transform = Transform( 0.584041, -0.286246, -0.759578, -0.568525, 0.523656, -0.63448, 0.579375, 0.802402, 0.143098, 1.83166, 1.53304, -11.6992 )
+
+[node name="3by3-plane2" parent="Pivot" instance=ExtResource( 6 )]
+transform = Transform( -0.68226, -0.483372, -0.548518, -0.458736, 0.867218, -0.193635, 0.569282, 0.119516, -0.813409, -1.96568, -6.21655, 5.92184 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.70863, 0, 14.6775 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.08618, 0, 11.6156 )
 
 [node name="UI" parent="." instance=ExtResource( 2 )]
 
