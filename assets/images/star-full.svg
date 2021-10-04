@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="256"
+   height="256"
+   viewBox="0 0 67.733332 67.733336"
+   version="1.1"
+   id="svg8"
+   sodipodi:docname="star-full.svg"
+   inkscape:version="1.0.2 (e86c870879, 2021-01-15)">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.84925"
+     inkscape:cx="82.024537"
+     inkscape:cy="160.28783"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="true"
+     units="px"
+     inkscape:window-width="1920"
+     inkscape:window-height="1005"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:snap-intersection-paths="true"
+     inkscape:snap-bbox="true"
+     inkscape:bbox-nodes="false"
+     inkscape:object-paths="true">
+    <inkscape:grid
+       type="xygrid"
+       id="grid1404" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Layer 2"
+     sodipodi:insensitive="true"
+     style="display:none">
+    <g
+       id="g1447"
+       transform="translate(-1.672249,1.9332156)"
+       style="opacity:0.415858">
+      <path
+         id="path1406"
+         style="fill:#3a3a3a;fill-opacity:1;stroke-width:0.999999"
+         d="M 45,0 V 10 H 57.5 V 21.066406 A 47.499999,47.499999 0 0 0 20,67.5 47.499999,47.499999 0 0 0 67.5,115 47.499999,47.499999 0 0 0 115,67.5 47.499999,47.499999 0 0 0 77.5,21.064453 V 10 H 90 V 0 Z"
+         transform="scale(0.26458333)" />
+      <circle
+         style="fill:#bbebff;fill-opacity:1;stroke-width:0.264583"
+         id="path1408"
+         cx="17.859375"
+         cy="17.859375"
+         r="9.260417" />
+      <path
+         id="path1408-3"
+         style="fill:#3a3a3a;fill-opacity:1;stroke-width:0.287049"
+         d="M 91.216797,45.929688 72.873047,59.011719 A 10.04672,10.04672 0 0 0 67.5,57.453125 10.04672,10.04672 0 0 0 57.453125,67.5 10.04672,10.04672 0 0 0 67.5,77.546875 10.04672,10.04672 0 0 0 77.546875,67.5 10.04672,10.04672 0 0 0 76.320312,62.693359 L 94.119141,50 Z"
+         transform="scale(0.26458333)" />
+    </g>
+  </g>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       sodipodi:type="star"
+       style="opacity:0.993;fill:#fff100;fill-opacity:0.99607801;stroke:#000000;stroke-width:5.29193;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill"
+       id="path868"
+       sodipodi:sides="5"
+       sodipodi:cx="33.09166"
+       sodipodi:cy="35.823059"
+       sodipodi:r1="36.780891"
+       sodipodi:r2="13.764056"
+       sodipodi:arg1="0.91290772"
+       sodipodi:arg2="1.5412262"
+       inkscape:flatsided="false"
+       inkscape:rounded="8.6736174e-17"
+       inkscape:randomized="0"
+       d="M 55.581244,64.927227 33.498605,49.581098 12.361615,66.205607 20.13274,40.461555 -2.2097968,25.496339 24.675661,24.931768 32.004204,-0.9417531 40.849206,24.453375 67.721032,23.427876 46.302085,39.687499 Z"
+       inkscape:transform-center-x="-0.40990076"
+       inkscape:transform-center-y="-2.1308313"
+       transform="matrix(0.78043902,0.02987008,-0.02987008,0.78043902,9.0335917,7.5901305)" />
+  </g>
+</svg>

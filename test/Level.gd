@@ -40,6 +40,7 @@ func start_level() -> void:
 	
 	objective.connect("objective_updated", self, "_on_Objective_updated")
 	objective.connect("objective_completed", self, "_on_Objective_completed")
+	objective.connect("objective_failed", self, "_on_Objective_failed")
 	objective.make_collision_areas()
 	yield(objective, "level_initiated")
 
@@ -176,15 +177,35 @@ func _on_Objective_updated(total: int, success: int, _failure: int) -> void:
 	ui.set_percent(float(success) / float(total) * 100.0)
 
 func _on_Objective_completed() -> void:
+	if is_game_over:
+		return
 	is_game_over = true
 	playing = false
-	var percent = objective.get_percent()
 	var data = {
 		"victory": true,
 		"time": ui.time_acc,
 		"cost": ui.cost_acc,
-		"percent": percent
+		"percent": objective.get_percent(),
+		"score": 2
 	}
+	ui.visible = false
+	pause_menu.visible = false
+	game_over.open(data)
+
+func _on_Objective_failed(reason) -> void:
+	if is_game_over:
+		return
+	is_game_over = true
+	playing = false
+	var percent = objective.get_percent()
+	var data = {
+		"victory": false,
+		"cost": ui.cost_acc,
+		"percent": objective.get_percent(),
+		"reason": reason
+	}
+	ui.visible = false
+	pause_menu.visible = false
 	game_over.open(data)
 
 func _on_PauseMenu_resume_game_pressed() -> void:

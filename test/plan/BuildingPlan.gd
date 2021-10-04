@@ -3,6 +3,7 @@ extends Spatial
 
 signal objective_updated(total, success, failure)
 signal objective_completed
+signal objective_failed(reason)
 signal level_initiated
 
 onready var point_container : Spatial = $Points
@@ -118,7 +119,8 @@ func _area_body_exited(body, is_success) -> void:
 func _update_counters() -> void:
 	if total > 0:
 		emit_signal("objective_updated", total, success_counter, failure_counter)
-		if get_percent() > target_complience:
+#		if get_percent() > target_complience:
+		if get_percent() > 0.1:
 			emit_signal("objective_completed")
 
 func show_objective(is_visible: bool) -> void:

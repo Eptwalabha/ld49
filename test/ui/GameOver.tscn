@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/fonts/font_text.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/fonts/font_title.tres" type="DynamicFont" id=2]
 [ext_resource path="res://test/ui/GameOver.gd" type="Script" id=3]
+[ext_resource path="res://test/ui/UIStars.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/images/time.svg" type="Texture" id=5]
+[ext_resource path="res://test/ui/UIGameOverLine.gd" type="Script" id=6]
+[ext_resource path="res://assets/images/cost.svg" type="Texture" id=7]
+[ext_resource path="res://assets/images/building.svg" type="Texture" id=8]
 
 [node name="GameOver" type="Control"]
 anchor_right = 1.0
@@ -25,7 +30,7 @@ margin_top = 100.0
 margin_right = 712.0
 margin_bottom = 500.0
 rect_min_size = Vector2( 400, 400 )
-color = Color( 0.294118, 0.294118, 0.294118, 0.603922 )
+color = Color( 0.335938, 0.335938, 0.335938, 0.784314 )
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/ColorRect"]
 anchor_right = 1.0
@@ -52,15 +57,161 @@ custom_fonts/font = ExtResource( 2 )
 text = "PAUSE"
 align = 1
 
-[node name="Text" type="Label" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer"]
-margin_top = 106.0
+[node name="Success" type="VBoxContainer" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer"]
+visible = false
+margin_top = 53.0
 margin_right = 368.0
-margin_bottom = 120.0
+margin_bottom = 233.0
 size_flags_vertical = 6
+
+[node name="UIStars" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Success" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 368.0
+margin_bottom = 128.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Success"]
+margin_top = 132.0
+margin_right = 368.0
+margin_bottom = 180.0
+
+[node name="Conformity" type="HBoxContainer" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Success/HBoxContainer"]
+margin_right = 127.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+script = ExtResource( 6 )
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Success/HBoxContainer/Conformity"]
+margin_right = 48.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
+size_flags_horizontal = 10
+size_flags_vertical = 6
+
+[node name="Control" type="Control" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Success/HBoxContainer/Conformity/CenterContainer"]
+margin_left = 24.0
+margin_top = 24.0
+margin_right = 24.0
+margin_bottom = 24.0
+
+[node name="Sprite" type="Sprite" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Success/HBoxContainer/Conformity/CenterContainer/Control"]
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 8 )
+
+[node name="Label" type="Label" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Success/HBoxContainer/Conformity"]
+margin_left = 52.0
+margin_top = 12.0
+margin_right = 127.0
+margin_bottom = 36.0
+size_flags_horizontal = 2
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 1 )
+text = "PERCENT"
+valign = 1
+
+[node name="Time" type="HBoxContainer" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Success/HBoxContainer"]
+margin_left = 131.0
+margin_right = 247.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+script = ExtResource( 6 )
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Success/HBoxContainer/Time"]
+margin_left = 8.0
+margin_right = 56.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
+size_flags_horizontal = 10
+size_flags_vertical = 6
+
+[node name="Control" type="Control" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Success/HBoxContainer/Time/CenterContainer"]
+margin_left = 24.0
+margin_top = 24.0
+margin_right = 24.0
+margin_bottom = 24.0
+
+[node name="Sprite" type="Sprite" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Success/HBoxContainer/Time/CenterContainer/Control"]
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Success/HBoxContainer/Time"]
+margin_left = 60.0
+margin_top = 12.0
+margin_right = 105.0
+margin_bottom = 36.0
+size_flags_horizontal = 2
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 1 )
+text = "TIME"
+valign = 1
+
+[node name="Cost" type="HBoxContainer" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Success/HBoxContainer"]
+margin_left = 251.0
+margin_right = 368.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+script = ExtResource( 6 )
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Success/HBoxContainer/Cost"]
+margin_left = 8.0
+margin_right = 56.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
+size_flags_horizontal = 10
+size_flags_vertical = 6
+
+[node name="Control" type="Control" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Success/HBoxContainer/Cost/CenterContainer"]
+margin_left = 24.0
+margin_top = 24.0
+margin_right = 24.0
+margin_bottom = 24.0
+
+[node name="Sprite" type="Sprite" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Success/HBoxContainer/Cost/CenterContainer/Control"]
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 7 )
+
+[node name="Label" type="Label" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Success/HBoxContainer/Cost"]
+margin_left = 60.0
+margin_top = 12.0
+margin_right = 103.0
+margin_bottom = 36.0
+size_flags_horizontal = 2
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 1 )
+text = "COST"
+valign = 1
+
+[node name="Failure" type="VBoxContainer" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer"]
+margin_top = 133.0
+margin_right = 368.0
+margin_bottom = 157.0
+size_flags_vertical = 6
+custom_constants/separation = 16
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Failure"]
+visible = false
+margin_right = 368.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 0, 150 )
+size_flags_vertical = 6
+
+[node name="Control" type="Control" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Failure/CenterContainer"]
+margin_left = 184.0
+margin_top = 75.0
+margin_right = 184.0
+margin_bottom = 75.0
+
+[node name="Sprite" type="Sprite" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Failure/CenterContainer/Control"]
+
+[node name="Label" type="Label" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Failure"]
+margin_right = 368.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 1 )
 align = 1
+valign = 1
 
 [node name="Action" type="VBoxContainer" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer"]
-margin_top = 192.0
+margin_top = 256.0
 margin_right = 368.0
 margin_bottom = 368.0
 custom_constants/separation = 16
@@ -73,24 +224,29 @@ size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 1 )
 text = "Next level"
 
-[node name="Restart" type="Button" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Action"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Action"]
 margin_top = 64.0
 margin_right = 368.0
 margin_bottom = 112.0
+custom_constants/separation = 16
+
+[node name="Restart" type="Button" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Action/HBoxContainer"]
+margin_right = 176.0
+margin_bottom = 48.0
 rect_min_size = Vector2( 0, 48 )
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 1 )
 text = "Restart level"
 
-[node name="Quit" type="Button" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Action"]
-margin_top = 128.0
+[node name="Quit" type="Button" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Action/HBoxContainer"]
+margin_left = 192.0
 margin_right = 368.0
-margin_bottom = 176.0
+margin_bottom = 48.0
 rect_min_size = Vector2( 0, 48 )
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 1 )
 text = "Quit to main menu"
 
 [connection signal="pressed" from="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Action/NextLevel" to="." method="_on_NextLevel_pressed"]
-[connection signal="pressed" from="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Action/Restart" to="." method="_on_Restart_pressed"]
-[connection signal="pressed" from="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Action/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="pressed" from="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Action/HBoxContainer/Restart" to="." method="_on_Restart_pressed"]
+[connection signal="pressed" from="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Action/HBoxContainer/Quit" to="." method="_on_Quit_pressed"]

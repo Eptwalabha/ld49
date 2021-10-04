@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://test/ui/UIStars.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/star-full.svg" type="Texture" id=2]
+[ext_resource path="res://assets/images/star-empty.svg" type="Texture" id=3]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="UIStars" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 320, 128 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="CenterContainer"]
+margin_left = 512.0
+margin_top = 300.0
+margin_right = 512.0
+margin_bottom = 300.0
+
+[node name="Pivot" type="Sprite" parent="CenterContainer/Control"]
+scale = Vector2( 0.8, 0.8 )
+
+[node name="Star1" type="AnimatedSprite" parent="CenterContainer/Control/Pivot"]
+position = Vector2( -128, 8 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 1 )
+
+[node name="Star2" type="AnimatedSprite" parent="CenterContainer/Control/Pivot"]
+position = Vector2( 0, -16 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 1 )
+
+[node name="Star3" type="AnimatedSprite" parent="CenterContainer/Control/Pivot"]
+position = Vector2( 128, 8 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 1 )
