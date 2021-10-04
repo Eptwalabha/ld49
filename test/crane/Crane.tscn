@@ -35,7 +35,7 @@ radial_segments = 4
 script = ExtResource( 2 )
 
 [node name="Pivot" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22.617, 0 )
+transform = Transform( 0.921375, 0, 0.388674, 0, 1, 0, -0.388674, 0, 0.921375, 0, 22.617, 0 )
 
 [node name="crane-arm" parent="Pivot" instance=ExtResource( 4 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )

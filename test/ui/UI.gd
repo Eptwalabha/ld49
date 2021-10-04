@@ -8,6 +8,7 @@ onready var time : UILabel = $MarginContainer/HBoxContainer/VBoxContainer/Time
 
 var time_acc : float = 0.0
 var cost_acc : int = 0
+var warning := false
 
 func reset() -> void:
 	time_acc = 0.0
@@ -36,6 +37,10 @@ func set_time(time_left: float) -> void:
 	var minutes = int(time_left / 60)
 	var secondes = int(time_left) % 60
 	time.set_text("%02d:%02d" % [minutes, secondes])
+	if not warning and time_left < 30:
+		warning = true
+		$MarginContainer/HBoxContainer/VBoxContainer2/Label2.visible = true
+		$AnimationPlayer.play("warning")
 
 func set_cost(amount: int) -> void:
 	cost.set_text("%s" % amount)

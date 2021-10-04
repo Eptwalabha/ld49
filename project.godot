@@ -105,7 +105,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Ld 49 - unstable"
-run/main_scene="res://test/MainMenu.tscn"
+run/main_scene="res://test/splash/SplashScreen.tscn"
 config/icon="res://icon.png"
 
 [autoload]

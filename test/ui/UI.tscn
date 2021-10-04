@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://test/ui/UI.gd" type="Script" id=1]
 [ext_resource path="res://test/ui/UILabel.tscn" type="PackedScene" id=2]
@@ -6,6 +6,22 @@
 [ext_resource path="res://test/ui/UITimeLabel.tscn" type="PackedScene" id=4]
 [ext_resource path="res://test/ui/UICostLabel.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/fonts/font_title.tres" type="DynamicFont" id=6]
+
+[sub_resource type="Animation" id=1]
+resource_name = "warning"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("MarginContainer/HBoxContainer/VBoxContainer2/Label2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
 
 [node name="UI" type="Control"]
 anchor_right = 1.0
@@ -72,8 +88,27 @@ size_flags_vertical = 0
 custom_fonts/font = ExtResource( 6 )
 text = "\"TAB\" to preview objective"
 
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 38.0
+margin_right = 624.0
+margin_bottom = 102.0
+rect_min_size = Vector2( 0, 64 )
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color = Color( 0.94902, 0, 0, 1 )
+text = "TIME WARNING"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Percentage" parent="MarginContainer/HBoxContainer" instance=ExtResource( 2 )]
 margin_left = 824.0
 margin_right = 1004.0
 size_flags_horizontal = 8
 size_flags_vertical = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/warning = SubResource( 1 )
