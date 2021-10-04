@@ -3,6 +3,8 @@ extends RigidBody
 
 signal block_deleted
 
+export(int) var price : int = 100
+
 onready var outline : Spatial = $Outline
 var locked : bool = false
 
@@ -33,7 +35,7 @@ func _on_Block_input_event(_camera: Node, event: InputEvent, _click_position: Ve
 		return
 	if event.is_action_pressed("delete-block"):
 		queue_free()
-		emit_signal("block_deleted")
+		emit_signal("block_deleted", price)
 
 func _on_Block_mouse_entered() -> void:
 	outline.visible = not locked

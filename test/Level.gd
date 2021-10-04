@@ -78,7 +78,7 @@ func _handle_game_input(event: InputEvent) -> void:
 			crane.detach()
 			var velocity = crane.chariot_velocity
 			block.unlock()
-#			block.get_parent().remove_child(block)
+			ui.add_cost(block.price)
 			block_container.add_child(block)
 			block.apply_central_impulse(velocity * block.mass)
 			block.global_transform = t
@@ -152,7 +152,7 @@ func _update_camera_delta_drag(mouse_position: Vector2) -> void:
 func _on_OrbitalCamera_orbiting_start() -> void:
 	pass
 
-func _on_Block_deleted() -> void:
+func _on_Block_deleted(_price: int) -> void:
 	wakeup_blocks = true
 
 func _wakeup_blocks() -> void:

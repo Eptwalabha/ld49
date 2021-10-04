@@ -20,6 +20,7 @@ size = Vector3( 4.2, 2.2, 2.2 )
 
 [node name="LineBlock" instance=ExtResource( 1 )]
 mass = 200.0
+price = 250
 
 [node name="CollisionShape" parent="." index="0"]
 shape = SubResource( 1 )

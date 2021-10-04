@@ -15,6 +15,9 @@ func _ready() -> void:
 
 func set_levels_list() -> void:
 	GameData.load_save()
+	for item in level_list.get_children():
+		item.queue_free()
+
 	for level_id in GameData.levels:
 		var btn = Button.new()
 		btn.rect_min_size = Vector2(32, 42)
@@ -42,3 +45,7 @@ func _on_Resume_pressed() -> void:
 
 func _on_Level_selected(level_id: String) -> void:
 	emit_signal("level_selected", level_id)
+
+func _on_ClearProgression_pressed() -> void:
+	GameData.clear_progression()
+	set_levels_list()

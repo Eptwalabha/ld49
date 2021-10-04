@@ -8,37 +8,38 @@
 resource_local_to_scene = true
 extents = Vector3( 3, 0.25, 1 )
 
-[sub_resource type="SpatialMaterial" id=6]
+[sub_resource type="SpatialMaterial" id=2]
 resource_local_to_scene = true
 flags_unshaded = true
 params_cull_mode = 1
 albedo_color = Color( 0.443137, 0, 0, 1 )
 
-[sub_resource type="CubeMesh" id=7]
+[sub_resource type="CubeMesh" id=3]
 resource_local_to_scene = true
-material = SubResource( 6 )
+material = SubResource( 2 )
 size = Vector3( 4.2, 0.7, 4.2 )
 
-[sub_resource type="BoxShape" id=5]
+[sub_resource type="BoxShape" id=4]
 extents = Vector3( 1, 0.25, 1 )
 
 [node name="PlaneCross" instance=ExtResource( 1 )]
+price = 200
 
 [node name="CollisionShape" parent="." index="0"]
 shape = SubResource( 1 )
 
 [node name="Outline" parent="Outline" index="0"]
 visible = false
-mesh = SubResource( 7 )
+mesh = SubResource( 3 )
 
 [node name="cross-plane-outline" parent="Outline" index="1" instance=ExtResource( 3 )]
 
 [node name="CollisionShape3" type="CollisionShape" parent="." index="2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2 )
-shape = SubResource( 5 )
+shape = SubResource( 4 )
 
 [node name="CollisionShape4" type="CollisionShape" parent="." index="3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2 )
-shape = SubResource( 5 )
+shape = SubResource( 4 )
 
 [node name="cross-plane" parent="." index="4" instance=ExtResource( 2 )]

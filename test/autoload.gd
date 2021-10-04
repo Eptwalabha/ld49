@@ -44,6 +44,12 @@ var level_count = len(levels)
 var current_level = "lvl1"
 const SAVE_FILE_NAME = "ld49-unstable.save"
 
+func clear_progression() -> void:
+	for level in levels:
+		levels[level].completed = false
+		levels[level].unlocked = level == "lvl1"
+	save()
+
 func unlock_next_level(has_completed_current: bool = true) -> void:
 	if has_completed_current:
 		levels[current_level].completed = true

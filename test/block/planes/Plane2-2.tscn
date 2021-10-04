@@ -20,6 +20,7 @@ size = Vector3( 4.2, 0.7, 4.2 )
 
 [node name="Plane2-2" instance=ExtResource( 1 )]
 mass = 10.0
+price = 80
 
 [node name="CollisionShape" parent="." index="0"]
 shape = SubResource( 1 )

@@ -5,6 +5,21 @@ signal objective_updated(total, success, failure)
 signal objective_completed
 signal level_initiated
 
+onready var point_container : Spatial = $Points
+onready var objective : Spatial = $Objective
+
+export(AABB) var aabb : AABB = AABB(Vector3(-5, 0, -5), Vector3(10, 10, 10))
+
+export(float, .5, 1.0) var target_complience : float = .8
+export(bool) var has_time_limit : bool = false
+export(int) var minutes : int = 5
+export(int, 0, 59) var secondes : int = 0
+var time_limit : float = float(minutes * 60 + secondes)
+export(bool) var has_budget_constaint : bool = false
+export(int) var budget : int = 5000
+
+export(String) var level_name : String = "level"
+
 var points : Array = []
 var matching_blocks : Array = []
 var non_matching_blocks : Array = []
@@ -12,10 +27,6 @@ var decimate_points := false
 var success_counter : int = 0
 var failure_counter : int = 0
 var total : int = 0
-var aabb : AABB = AABB(Vector3(-5, 0, -5), Vector3(10, 10, 10))
-
-onready var point_container : Spatial = $Points
-onready var objective : Spatial = $Objective
 
 const STEP : float = .5
 
@@ -91,23 +102,23 @@ func non_colliding_blocks(the_blocks: Array) -> Array:
 func _area_body_entered(body, is_success) -> void:
 	if body is BuildingBlock:
 		if is_success:
-			success_counter = min(total, success_counter + 1)
+			success_counter = int(min(total, success_counter + 1))
 		else:
-			failure_counter = min(total, failure_counter + 1)
+			failure_counter = int(min(total, failure_counter + 1))
 		_update_counters()
 
 func _area_body_exited(body, is_success) -> void:
 	if body is BuildingBlock:
 		if is_success:
-			success_counter = max(0, success_counter - 1)
+			success_counter = int(max(0, success_counter - 1))
 		else:
-			failure_counter = max(0, failure_counter - 1)
+			failure_counter = int(max(0, failure_counter - 1))
 		_update_counters()
 
 func _update_counters() -> void:
 	if total > 0:
 		emit_signal("objective_updated", total, success_counter, failure_counter)
-		if get_percent() > 0.2:
+		if get_percent() > target_complience:
 			emit_signal("objective_completed")
 
 func show_objective(is_visible: bool) -> void:

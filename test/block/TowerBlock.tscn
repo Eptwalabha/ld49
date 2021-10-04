@@ -20,6 +20,7 @@ size = Vector3( 2.2, 4.2, 2.2 )
 
 [node name="TowerBlock" instance=ExtResource( 1 )]
 mass = 200.0
+price = 250
 
 [node name="CollisionShape" parent="." index="0"]
 shape = SubResource( 1 )
