@@ -59,9 +59,9 @@ align = 1
 
 [node name="Success" type="VBoxContainer" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer"]
 visible = false
-margin_top = 53.0
+margin_top = 38.0
 margin_right = 368.0
-margin_bottom = 233.0
+margin_bottom = 218.0
 size_flags_vertical = 6
 
 [node name="UIStars" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Success" instance=ExtResource( 4 )]

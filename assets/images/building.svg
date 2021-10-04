@@ -48,7 +48,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -57,24 +57,40 @@
      inkscape:groupmode="layer"
      id="layer1">
     <g
-       id="g1447"
-       transform="translate(-1.672249,1.9332156)">
+       id="g957"
+       transform="translate(0.39897728,-0.09403491)">
+      <rect
+         style="opacity:0.993;fill:#009c11;fill-opacity:0.996078;stroke:none;stroke-width:1.14237;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0.926227;stroke-opacity:1;paint-order:stroke markers fill"
+         id="rect843-3"
+         width="12.473214"
+         height="24.157608"
+         x="12.284226"
+         y="6.3845115" />
+      <rect
+         style="opacity:0.993;fill:#bb2923;fill-opacity:1;stroke:none;stroke-width:1.08661;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:3.5007;stroke-opacity:1;paint-order:stroke markers fill"
+         id="rect938"
+         width="12.473213"
+         height="2.3007245"
+         x="12.284226"
+         y="28.241394" />
+      <rect
+         style="opacity:0.993;fill:#bd2823;fill-opacity:0.996078;stroke:none;stroke-width:1.20096;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:3.5007;paint-order:normal"
+         id="rect865"
+         width="3.4017854"
+         height="24.157608"
+         x="21.355654"
+         y="6.3845115" />
       <path
-         id="path1406"
-         style="fill:#3a3a3a;fill-opacity:1;stroke-width:0.999999"
-         d="M 45,0 V 10 H 57.5 V 21.066406 A 47.499999,47.499999 0 0 0 20,67.5 47.499999,47.499999 0 0 0 67.5,115 47.499999,47.499999 0 0 0 115,67.5 47.499999,47.499999 0 0 0 77.5,21.064453 V 10 H 90 V 0 Z"
-         transform="scale(0.26458333)" />
-      <circle
-         style="fill:#bbebff;fill-opacity:1;stroke-width:0.264583"
-         id="path1408"
-         cx="17.859375"
-         cy="17.859375"
-         r="9.260417" />
-      <path
-         id="path1408-3"
-         style="fill:#3a3a3a;fill-opacity:1;stroke-width:0.287049"
-         d="M 91.216797,45.929688 72.873047,59.011719 A 10.04672,10.04672 0 0 0 67.5,57.453125 10.04672,10.04672 0 0 0 57.453125,67.5 10.04672,10.04672 0 0 0 67.5,77.546875 10.04672,10.04672 0 0 0 77.546875,67.5 10.04672,10.04672 0 0 0 76.320312,62.693359 L 94.119141,50 Z"
-         transform="scale(0.26458333)" />
+         id="rect867"
+         style="opacity:0.993;fill:#0eaaa9;fill-opacity:0.996078;stroke:none;stroke-width:1.08661;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:3.5007;stroke-opacity:1;paint-order:stroke markers fill"
+         d="m 14.552084,8.6852362 v 3.4510868 h 2.267857 V 8.6852362 Z m 5.669643,0 v 3.4510868 h 2.267857 V 8.6852362 Z M 14.552084,15.58741 v 3.451086 h 2.267857 V 15.58741 Z m 5.669643,0 v 3.451086 h 2.267857 V 15.58741 Z m -5.669643,6.902173 v 3.451087 h 2.267857 v -3.451087 z m 5.669643,0 v 3.451087 h 2.267857 v -3.451087 z" />
+      <rect
+         style="opacity:0.993;fill:none;fill-opacity:0.996078;stroke:#000000;stroke-width:1.14234;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:2.28469, 2.28469;stroke-dashoffset:0.799641;paint-order:normal"
+         id="rect843"
+         width="12.473214"
+         height="24.157608"
+         x="8.8824415"
+         y="4.083787" />
     </g>
   </g>
 </svg>
