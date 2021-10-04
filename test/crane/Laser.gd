@@ -22,5 +22,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		marker.visible = false
 
-func _process(delta: float) -> void:
-	marker.rotate_y(delta * .1)
+func reset() -> void:
+	marker.transform.basis = Basis()
+
+func update_rotation(basis: Basis) -> void:
+	marker.global_transform.basis = basis

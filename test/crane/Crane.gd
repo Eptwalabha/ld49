@@ -5,6 +5,7 @@ onready var arm_pivot : Spatial = $Pivot
 onready var chariot : Spatial = $Pivot/Chariot
 onready var hook_rt : RemoteTransform = $Pivot/Chariot/Rope/Hook/RemoteTransform
 onready var hook : Spatial = $Pivot/Chariot/Rope/Hook
+onready var laser : Laser = $Pivot/Chariot/Rope/Hook/Laser
 var _building_block : BuildingBlock
 var _initial_block_basis : Basis
 var chariot_velocity : Vector3 = Vector3.ZERO
@@ -56,10 +57,13 @@ func start_rotation(x: float) -> void:
 
 func end_rotation() -> void:
 	_start_rotation_x = 0.0
+	laser.reset()
 
 func update_rotation(x: float) -> void:
 	if not hold_something():
 		return
 	var vp : Vector2 = get_viewport().get_visible_rect().size / 2.0
 	var angle : float = ((_start_rotation_x - x) / vp.x) * ROTATION_BLOCK
-	_building_block.global_transform.basis = _initial_block_basis.rotated(Vector3.UP, -angle)
+	var b = _initial_block_basis.rotated(Vector3.UP, -angle)
+	_building_block.global_transform.basis = b
+	laser.update_rotation(b)
