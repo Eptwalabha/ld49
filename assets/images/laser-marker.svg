@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="128"
+   height="128"
+   viewBox="0 0 33.866666 33.866668"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0.2 (e86c870879, 2021-01-15)"
+   sodipodi:docname="laser-marker.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="3.959798"
+     inkscape:cx="39.727489"
+     inkscape:cy="67.061253"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="true"
+     units="px"
+     inkscape:window-width="1920"
+     inkscape:window-height="1005"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid1404" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       id="path977"
+       style="opacity:0.993;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:4.75699;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:3.5007;stroke-opacity:1;paint-order:stroke markers fill"
+       d="M 56.5 4 L 56.5 9.5136719 A 54.999999 54.999999 0 0 0 9.515625 56.5 L 5 56.5 L 5 71.5 L 9.5136719 71.5 A 54.999999 54.999999 0 0 0 56.5 118.48438 L 56.5 124 L 71.5 124 L 71.5 118.48633 A 54.999999 54.999999 0 0 0 118.48438 71.5 L 125 71.5 L 125 56.5 L 118.48633 56.5 A 54.999999 54.999999 0 0 0 71.5 9.515625 L 71.5 4 L 56.5 4 z M 56.5 19.628906 L 56.5 24 L 71.5 24 L 71.5 19.630859 A 45 45 0 0 1 108.37109 56.5 L 105 56.5 L 105 71.5 L 108.36914 71.5 A 45 45 0 0 1 71.5 108.37109 L 71.5 104 L 56.5 104 L 56.5 108.36914 A 45 45 0 0 1 19.628906 71.5 L 25 71.5 L 25 56.5 L 19.630859 56.5 A 45 45 0 0 1 56.5 19.628906 z M 63.980469 54 A 9.9999997 9.9999997 0 0 0 54 64 A 9.9999997 9.9999997 0 0 0 64 74 A 9.9999997 9.9999997 0 0 0 74 64 A 9.9999997 9.9999997 0 0 0 64 54 A 9.9999997 9.9999997 0 0 0 63.980469 54 z "
+       transform="scale(0.26458333)" />
+  </g>
+</svg>

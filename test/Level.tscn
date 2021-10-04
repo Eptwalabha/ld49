@@ -67,6 +67,7 @@ cast_to = Vector3( 0, -10, 0 )
 collision_mask = 2
 
 [node name="Debug" type="Spatial" parent="."]
+visible = false
 
 [node name="Pointer" type="MeshInstance" parent="Debug"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.63408, 0.900725, 0 )

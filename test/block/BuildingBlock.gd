@@ -19,6 +19,8 @@ func turn_into_objective() -> void:
 	input_ray_pickable = false
 
 func unlock() -> void:
+	collision_layer = 5
+	collision_mask = 5
 	gravity_scale = 1
 	sleeping = false
 	can_sleep = true
@@ -26,6 +28,8 @@ func unlock() -> void:
 	apply_central_impulse(Vector3.DOWN)
 
 func lock() -> void:
+	collision_layer = 0
+	collision_mask = 0
 	gravity_scale = 0
 	can_sleep = false
 	locked = true

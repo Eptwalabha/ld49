@@ -134,8 +134,7 @@ func _area_body_exited(body, is_success) -> void:
 func _update_counters() -> void:
 	if total > 0 and not game_over:
 		emit_signal("objective_updated", total, success_counter, failure_counter)
-#		if get_percent() > target_complience:
-		if get_percent() > 0.1:
+		if get_percent() > target_complience:
 			game_over = true
 			emit_signal("objective_completed")
 

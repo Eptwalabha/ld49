@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://material/CraneRedMetal.tres" type="Material" id=1]
 [ext_resource path="res://test/crane/Crane.gd" type="Script" id=2]
+[ext_resource path="res://test/crane/Laser.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 5, 4, 3 )
@@ -88,6 +89,8 @@ material/0 = null
 [node name="RemoteTransform" type="RemoteTransform" parent="Pivot/Chariot/Rope/Hook"]
 update_rotation = false
 update_scale = false
+
+[node name="Laser" parent="Pivot/Chariot/Rope/Hook" instance=ExtResource( 3 )]
 
 [node name="Mast" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.5, 0 )
