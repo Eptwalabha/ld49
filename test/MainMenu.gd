@@ -24,4 +24,5 @@ func _on_Fade_fade_out_completed(data) -> void:
 			GameData.save()
 			get_tree().quit(0)
 		"load_game":
+			GameData.reload_attempt = 0
 			get_tree().change_scene("res://test/Level.tscn")

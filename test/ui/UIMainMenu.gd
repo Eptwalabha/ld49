@@ -24,7 +24,7 @@ func set_levels_list() -> void:
 		var level = GameData.levels[level_id]
 
 		btn.text = "%s" % [tr(level_id)]
-		btn.disabled = not level.unlocked
+		btn.disabled = not level.unlocked and not GameData.DEBUG
 		if level.has('title'):
 			btn.text = "%s" % [tr(level.title)]
 

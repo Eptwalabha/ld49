@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://test/crane/Crane.tscn" type="PackedScene" id=1]
 [ext_resource path="res://test/Level.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://test/ui/UIFade.tscn" type="PackedScene" id=5]
 [ext_resource path="res://test/ui/PauseMenu.tscn" type="PackedScene" id=6]
 [ext_resource path="res://test/ui/GameOver.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/models/misc/city.glb" type="PackedScene" id=8]
 
 [sub_resource type="PhysicsMaterial" id=1]
 rough = true
@@ -14,8 +15,8 @@ rough = true
 [sub_resource type="BoxShape" id=2]
 extents = Vector3( 15, 1.2, 15 )
 
-[sub_resource type="CubeMesh" id=3]
-size = Vector3( 30, 2, 30 )
+[sub_resource type="BoxShape" id=8]
+extents = Vector3( 26, 5, 27 )
 
 [sub_resource type="SphereMesh" id=4]
 radius = 0.1
@@ -49,10 +50,11 @@ physics_material_override = SubResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
 shape = SubResource( 2 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Ground/StaticBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1, 0 )
-mesh = SubResource( 3 )
-material/0 = null
+[node name="Ground" type="CollisionShape" parent="Ground/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0 )
+shape = SubResource( 8 )
+
+[node name="city" parent="Ground/StaticBody" instance=ExtResource( 8 )]
 
 [node name="RayCast" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.16191, 5.1161, 0 )

@@ -7,7 +7,7 @@ onready var marker : Spatial = $GroundMarker
 onready var pivot : Spatial = $Pivot
 onready var mesh : Mesh = $Pivot/MeshInstance.mesh
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if ray.is_colliding():
 		var point = to_local(ray.get_collision_point())
 		mesh.size.y = -point.y

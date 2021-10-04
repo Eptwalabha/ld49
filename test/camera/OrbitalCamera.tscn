@@ -9,6 +9,6 @@ max_zoom = 80.0
 [node name="Pitch" type="Spatial" parent="."]
 
 [node name="Camera" type="Camera" parent="Pitch"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 33.4294, 27.8746, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 48.3747, 48.5133, 0 )
 fov = 50.0
 far = 1000.0

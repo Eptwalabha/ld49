@@ -1,5 +1,7 @@
 extends Node
 
+var DEBUG = false
+
 var available_blocks = [
 	"basic", "line", "tower",
 	"plane-22", "plane-31", "plane-33", "plane-cross"
@@ -15,6 +17,7 @@ var BUILDING_BLOCKS = {
 	"plane-cross": preload("res://test/block/planes/PlaneCross.tscn")
 }
 
+var reload_attempt : int = 0
 
 func get_levels() -> Object:
 	var dir : Directory = Directory.new()

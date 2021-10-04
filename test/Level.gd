@@ -44,6 +44,12 @@ func start_level() -> void:
 	objective.connect("objective_failed", self, "_on_Objective_failed")
 	objective.make_collision_areas()
 	yield(objective, "level_initiated")
+	
+	if objective.total == 0:
+		GameData.reload_attempt += 1
+		if GameData.reload_attempt > 3:
+			get_tree().go_to_main_menu()
+		get_tree().reload_current_scene()
 
 	current_block = "tower"
 	ui.reset()
@@ -200,7 +206,6 @@ func _on_Objective_failed(reason) -> void:
 		return
 	is_game_over = true
 	playing = false
-	var percent = objective.get_percent()
 	var data = {
 		"victory": false,
 		"cost": cost,

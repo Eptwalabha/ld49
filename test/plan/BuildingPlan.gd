@@ -43,6 +43,7 @@ func make_collision_areas() -> void:
 		emit_signal("level_initiated")
 		return
 
+	total = 0
 	points = []
 
 	for p in point_container.get_children():
@@ -82,8 +83,10 @@ func make_collision_areas() -> void:
 		point.collision_mask = 4
 		if is_colliding:
 			total += 1
-		point.connect("body_entered", self, "_area_body_entered", [is_colliding])
-		point.connect("body_exited", self, "_area_body_exited", [is_colliding])
+			point.connect("body_entered", self, "_area_body_entered", [is_colliding])
+			point.connect("body_exited", self, "_area_body_exited", [is_colliding])
+		else:
+			point_container.remove_child(point)
 
 	emit_signal("level_initiated")
 
