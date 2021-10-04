@@ -1,20 +1,9 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://material/CraneRedMetal.tres" type="Material" id=1]
 [ext_resource path="res://test/crane/Crane.gd" type="Script" id=2]
 [ext_resource path="res://test/crane/Laser.tscn" type="PackedScene" id=3]
-
-[sub_resource type="CubeMesh" id=1]
-size = Vector3( 5, 4, 3 )
-
-[sub_resource type="CubeMesh" id=2]
-size = Vector3( 50, 1, 1 )
-
-[sub_resource type="CubeMesh" id=3]
-size = Vector3( 3, 4, 2 )
-
-[sub_resource type="SpatialMaterial" id=4]
-albedo_color = Color( 0.384314, 0.384314, 0.384314, 1 )
+[ext_resource path="res://assets/models/misc/crane-arm.glb" type="PackedScene" id=4]
 
 [sub_resource type="CubeMesh" id=5]
 size = Vector3( 4, 1.5, 1.5 )
@@ -46,22 +35,10 @@ radial_segments = 4
 script = ExtResource( 2 )
 
 [node name="Pivot" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22.617, 0 )
 
-[node name="Cabin" type="MeshInstance" parent="Pivot"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1.3, -3 )
-mesh = SubResource( 1 )
-material/0 = null
-
-[node name="Arm" type="MeshInstance" parent="Pivot"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -18 )
-mesh = SubResource( 2 )
-material/0 = ExtResource( 1 )
-
-[node name="CounterWeight" type="MeshInstance" parent="Pivot/Arm"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, -1.3, 0 )
-mesh = SubResource( 3 )
-material/0 = SubResource( 4 )
+[node name="crane-arm" parent="Pivot" instance=ExtResource( 4 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
 
 [node name="Chariot" type="Spatial" parent="Pivot"]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -18.7154 )
