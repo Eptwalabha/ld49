@@ -16,9 +16,7 @@ export(bool) var has_time_limit : bool = false
 export(int) var minutes : int = 5
 export(int, 0, 59) var secondes : int = 0
 var time_limit : float = float(minutes * 60 + secondes)
-export(bool) var has_budget_constaint : bool = false
-export(int) var budget : int = 5000
-
+export(int) var budget : int = 999999999999
 export(String) var level_name : String = "level"
 
 var points : Array = []
@@ -28,10 +26,12 @@ var decimate_points := false
 var success_counter : int = 0
 var failure_counter : int = 0
 var total : int = 0
+var time_left : float = time_limit
 
 const STEP : float = .5
 
 func _ready() -> void:
+	time_left = minutes * 60.0 + secondes
 	for block in objective.get_children():
 		if block is BuildingBlock:
 			block.turn_into_objective()
@@ -66,6 +66,10 @@ func make_collision_areas() -> void:
 				point_area.add_child(collision)
 				points.push_back(point_area)
 
+	# yeah... I know
+	yield(get_tree(), "physics_frame")
+	yield(get_tree(), "physics_frame")
+	yield(get_tree(), "physics_frame")
 	yield(get_tree(), "physics_frame")
 	yield(get_tree(), "physics_frame")
 	yield(get_tree(), "physics_frame")
@@ -82,6 +86,17 @@ func make_collision_areas() -> void:
 		point.connect("body_exited", self, "_area_body_exited", [is_colliding])
 
 	emit_signal("level_initiated")
+
+var game_over = false
+
+func process(delta: float) -> void:
+	if game_over:
+		return
+	time_left -= delta
+	if time_left <= 0:
+		time_left = 0
+		game_over = true
+		emit_signal("objective_failed", "time's up")
 
 func non_colliding_blocks(the_blocks: Array) -> Array:
 
@@ -117,10 +132,11 @@ func _area_body_exited(body, is_success) -> void:
 		_update_counters()
 
 func _update_counters() -> void:
-	if total > 0:
+	if total > 0 and not game_over:
 		emit_signal("objective_updated", total, success_counter, failure_counter)
 #		if get_percent() > target_complience:
 		if get_percent() > 0.1:
+			game_over = true
 			emit_signal("objective_completed")
 
 func show_objective(is_visible: bool) -> void:
@@ -128,3 +144,13 @@ func show_objective(is_visible: bool) -> void:
 
 func get_percent() -> float:
 	return float(success_counter) / float(total)
+
+func get_score(cost: int) -> int:
+	var score = 0
+	if cost < budget:
+		score += 1
+	if time_left / time_limit < .8:
+		score += 1
+	if time_left / time_limit < .6:
+		score += 1 
+	return score

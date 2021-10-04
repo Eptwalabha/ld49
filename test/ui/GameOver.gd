@@ -27,7 +27,7 @@ func open(player_data: Dictionary) -> void:
 	visible = true
 	victory = player_data.victory == true
 	success.visible = victory
-	failure.visible = success.visible
+	failure.visible = not success.visible
 	
 	if victory:
 		set_victory(player_data)
@@ -50,6 +50,7 @@ func set_victory(data) -> void:
 
 func set_failure(data) -> void:
 	title.text = "Oh no!"
+	next.visible = false
 	failure_label.text = data.reason
 
 func _on_NextLevel_pressed() -> void:

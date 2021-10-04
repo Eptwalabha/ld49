@@ -9,6 +9,7 @@ rough = true
 
 [node name="Building001" instance=ExtResource( 4 )]
 aabb = AABB( -3, 0, -3, 6, 12, 6 )
+minutes = 3
 
 [node name="LineBlock" parent="Objective" index="0" instance=ExtResource( 2 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 5, 0 )

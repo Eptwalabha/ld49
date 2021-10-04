@@ -16,6 +16,7 @@ var m_position : Vector2 = Vector2.ZERO
 var _target : Vector3 = Vector3.ZERO
 const CRANE_SPEED : float = 4.0
 var wakeup_blocks : bool = false
+var cost : int = 0
 
 var playing : bool = false
 var is_game_over : bool = false
@@ -79,7 +80,7 @@ func _handle_game_input(event: InputEvent) -> void:
 			crane.detach()
 			var velocity = crane.chariot_velocity
 			block.unlock()
-			ui.add_cost(block.price)
+			cost += block.price
 			block_container.add_child(block)
 			block.apply_central_impulse(velocity * block.mass)
 			block.global_transform = t
@@ -140,8 +141,10 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float) -> void:
 	if playing:
 		crane.point_at(ray.global_transform.origin)
+		objective.process(delta)
 		objective.show_objective(Input.is_action_pressed("show-objective"))
-		ui.add_time(delta)
+		ui.set_time(objective.time_left)
+		ui.set_cost(cost)
 
 func _on_OrbitalCamera_orbiting_end(mouse_position: Vector2) -> void:
 	_update_camera_delta_drag(mouse_position)
@@ -183,10 +186,10 @@ func _on_Objective_completed() -> void:
 	playing = false
 	var data = {
 		"victory": true,
-		"time": ui.time_acc,
-		"cost": ui.cost_acc,
+		"time": objective.time_left,
+		"cost": cost,
 		"percent": objective.get_percent(),
-		"score": 2
+		"score": objective.get_score(cost)
 	}
 	ui.visible = false
 	pause_menu.visible = false
@@ -200,7 +203,7 @@ func _on_Objective_failed(reason) -> void:
 	var percent = objective.get_percent()
 	var data = {
 		"victory": false,
-		"cost": ui.cost_acc,
+		"cost": cost,
 		"percent": objective.get_percent(),
 		"reason": reason
 	}

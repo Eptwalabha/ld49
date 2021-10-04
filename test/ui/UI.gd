@@ -19,6 +19,12 @@ func add_cost(amount: int) -> void:
 	cost_acc += amount
 	cost.set_text("%s" % cost_acc)
 
+func add_time(delta: float) -> void:
+	time_acc += delta
+	var minutes = int(time_acc / 60)
+	var secondes = int(time_acc) % 60
+	time.set_text("%02d:%02d" % [minutes, secondes])
+
 func set_type(type: String) -> void:
 	block_preview.change_block_type(type)
 
@@ -26,9 +32,11 @@ func set_percent(percent: float) -> void:
 	var p = int(percent * 10)
 	check_percent.set_text("%s%%" % (float(p) / 10.0))
 
-func add_time(delta: float) -> void:
-	time_acc += delta
-	var minutes = int(time_acc / 60)
-	var secondes = int(time_acc) % 60
+func set_time(time_left: float) -> void:
+	var minutes = int(time_left / 60)
+	var secondes = int(time_left) % 60
 	time.set_text("%02d:%02d" % [minutes, secondes])
+
+func set_cost(amount: int) -> void:
+	cost.set_text("%s" % amount)
 

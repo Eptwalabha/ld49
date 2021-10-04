@@ -10,6 +10,7 @@
 rough = true
 
 [node name="Building001" instance=ExtResource( 5 )]
+minutes = 6
 
 [node name="TowerBlock" parent="Objective" index="1" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
